@@ -5,13 +5,12 @@ const config: IConfig =  {
   treeShaking: true,
   routes: [
     {
-      path: '/', component: '../pages/home/index' 
-    },
-    {
-      path: '/repo',
+      path: '/',
       component: '../layouts/index',
       routes: [
-        { path: './document', component: '../pages/page/index' }
+        { path: './', component: '../pages/home/index' },
+        { path: './:repo', component: '../pages/page/index', redirect: './:repo/0' },
+        { path: './:repo/:id', component: '../pages/page/index' }
       ]
     }
   ],

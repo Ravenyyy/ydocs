@@ -1,29 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Anchor } from 'antd';
 import styles from './style.module.css';
-import { getRepo } from '@/services/getRepoService';
 
 const { Link } = Anchor;
 
 export default function(props :any){
-  const [repos, setRepos] = useState<any>();
+  const treeData :any =props.data;
 
-  useEffect(() => {
-    const getData = async () => {
-      const reposData = await getRepo();
-      setRepos(reposData);
-    }
-    getData();
-  }, []);
+  const createAnchor = (treeData :any) => {  
+    if(!treeData) return;
+    let anchor :any = []; 
+    const create = (treeData :any ,el: any)=>{
+      for(let i=0;i<treeData.length;i++){
+        if(treeData[i].children){  
+          let children :any = [];
+          create(treeData[i].children ,children);
+          el.push(
+            <Link key={i} href={"#" + treeData[i].title} title={treeData[i].title} >
+              {children}
+            </Link>
+          )
+        }else{
+          el.push(
+            <Link key={i} href={"#" + treeData[i].title} title={treeData[i].title} />
+          )
+        }
+      }
+
+    };
+    create(treeData.data, anchor);
+    return anchor;
+  }
   return (
-    <Anchor className={styles.myAnchor}>
-      <Link href="#标题" title="标题" />
-      <Link href="#小标题1" title="小标题1" />
-      <Link href="#小标题2" title="小标题2" />
-      <Link href="#content1" title="">
-        <Link href="#Anchor-Props" title="Anchor Props" />
-        <Link href="#Link-Props" title="Link Props" />
-      </Link>
+    <Anchor className={styles.myAnchor} targetOffset={70}>
+      {createAnchor(treeData)}
     </Anchor>
   );
 }
