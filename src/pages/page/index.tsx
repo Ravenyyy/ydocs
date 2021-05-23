@@ -61,7 +61,7 @@ export default function (props: any) {
     <>
       <Layout>
         <Sider className={styles.mySlide}>
-          <SlideMenu repo={props.match.params.repo}></SlideMenu>
+          <SlideMenu params={props.match.params}></SlideMenu>
         </Sider>
       </Layout>
       <Layout style={{ marginLeft: 200 }}>

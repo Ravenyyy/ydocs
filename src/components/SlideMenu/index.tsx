@@ -24,7 +24,6 @@ export default function(props :any){
     title = cate.title;
   }
 
-  console.log(props.repo)
   const createMenu = (cates :any) => {  
     if(!cates) return;
     let submenuIndex :number = 0; 
@@ -46,7 +45,7 @@ export default function(props :any){
         }else{
           el.push(
             <Menu.Item key={cates[i].path} title={cates[i].title}>
-              <Link to={'/' + props.repo + cates[i].path}>
+              <Link to={'/' + props.params.repo + cates[i].path}>
                 <span>{cates[i].title}</span>
               </Link>
             </Menu.Item>
@@ -67,7 +66,7 @@ export default function(props :any){
       <div className={styles.menuTitle}>
         {title}
       </div>
-      <Menu style={{ width: 256 }} defaultSelectedKeys={['/0']} defaultOpenKeys={['sub1']} mode="inline">
+      <Menu style={{ width: 256 }} defaultSelectedKeys={['/' + props.params.id]} defaultOpenKeys={['sub1']} mode="inline">
         {createMenu(cates)}
       </Menu>
     </>
