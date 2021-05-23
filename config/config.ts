@@ -5,18 +5,21 @@ const config: IConfig =  {
   treeShaking: true,
   routes: [
     {
-      path: '/',
+      path: '/', component: '../pages/home/index' 
+    },
+    {
+      path: '/repo',
       component: '../layouts/index',
       routes: [
-        { path: '/', component: '../pages/index' }
+        { path: './document', component: '../pages/page/index' }
       ]
     }
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
-      antd: false,
-      dva: false,
+      antd: true,
+      dva: true,
       dynamicImport: false,
       title: 'myreact',
       dll: false,

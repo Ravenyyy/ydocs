@@ -13,3 +13,58 @@
   color: white;
   margin: 0;
 }
+
+.mySlide {
+  position: fixed;
+  padding-top: 64px;
+  background-color: whitesmoke;
+  height: 100vh;
+  font-size: 1rem;
+  background: white;
+  color: white;
+  overflow: auto;
+  border-right: 1px solid #f0f2f5;
+}
+
+.myHeader {
+  z-index: 2;
+  position: fixed;
+  width: 100vw;
+  background: white;
+  text-align: center; 
+  padding: 0;
+  opacity: 0.8;
+  box-shadow: 10px 5px 5px #f0f2f5;
+}
+
+.myContent {
+  padding-top: 70px;
+  background: white;
+  min-height: calc(100vh - 51px)
+}
+
+.myDetail {
+  padding: 14px 30px;
+  background: white;
+}
+
+.myFooter {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.myLogo {
+  z-index: 3;
+  float: left;
+  width: 120px;
+  height: 32px;
+  margin: 16px 24px;
+  background: gray
+}
+
+.mySearch {
+  float: left;
+  margin: 16px 24px;
+  width: 200px;
+  margin-left: 60px;
+}
