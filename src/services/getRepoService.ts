@@ -1,5 +1,4 @@
-import repos from '@/model/getRepo';
-
-export const getRepo = () => {
-  return Promise.resolve(repos);
+export const getRepo = async () => {
+  const response = await fetch('/api/getRepo');
+  return await response.json();
 };

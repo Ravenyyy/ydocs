@@ -1,5 +1,4 @@
-import cates from '@/model/getCate';
-
-export const getCate = () => {
-  return Promise.resolve(cates);
+export const getCate = async () => {
+  const response = await fetch('/api/getCate');
+  return await response.json();
 };

@@ -1,5 +1,4 @@
-import doc from '@/model/getDoc';
-
-export const getDoc = () => {
-  return Promise.resolve(doc);
+export const getDoc = async () => {
+  const response = await fetch('/api/getDoc');
+  return await response.json();
 };

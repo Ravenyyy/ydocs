@@ -1,5 +1,4 @@
-import links from '@/model/getLink';
-
-export const getLink = () => {
-  return Promise.resolve(links);
+export const getLink = async () => {
+  const response = await fetch('/api/getLink');
+  return await response.json();
 };
