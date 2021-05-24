@@ -1,32 +1,16 @@
-
-.normal {
-  font-family: Georgia, sans-serif;
-  text-align: center;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: normal;
-  letter-spacing: -1px;
-  background: darkslateblue;
-  padding: .6em 0;
-  color: white;
-  margin: 0;
-}
-
-.mySlide {
+.g-slide {
   position: fixed;
   padding-top: 64px;
   background-color: whitesmoke;
   height: 100vh;
-  font-size: 1rem;
+  font-size: 16px;
   background: white;
   color: white;
   overflow: auto;
   border-right: 1px solid #f0f2f5;
 }
 
-.myHeader {
+.g-header {
   z-index: 2;
   position: fixed;
   width: 100vw;
@@ -37,49 +21,49 @@
   box-shadow: 10px 5px 5px #f0f2f5;
 }
 
-.myContent {
+.g-content {
   padding-top: 70px;
   background: white;
   min-height: calc(100vh - 51px)
 }
 
-.myDetail {
+.g-detail {
   padding: 45px 50px;
   background: white;
 }
 
-.myDetail h1{
+.g-detail h1{
   font-size: 30px;
 }
 
-.myDetail p{
+.g-detail p{
   font-size: 15px;
   font-weight: 600;
   line-height: 60px;
 }
 
-.myDetail h2{
+.g-detail h2{
   font-size: 20px;
 }
 
-.myRepo{
+.s-repo{
   padding: 20px 0;
   font-size: 16px;
   line-height: 32px;
 }
 
-.myIcon{
+.s-icon{
   padding: 12px 0;
   font-size: 36px;
   margin: auto;
 }
 
-.myFooter {
+.g-footer {
   text-align: center;
   padding: 15px 0;
 }
 
-.myLogo {
+.m-logo {
   z-index: 3;
   float: left;
   width: 120px;
@@ -89,7 +73,7 @@
   opacity: .5;
 }
 
-.mySearch {
+.m-search {
   float: left;
   margin: 16px 24px;
   width: 200px;
