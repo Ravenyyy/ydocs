@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.css';
 import DropdownMenu from '@/components/DropdownMenu';
-import { Layout , Input, BackTop } from 'antd';
+import { Layout, Input, BackTop } from 'antd';
 
 const { Header } = Layout;
 
@@ -18,7 +18,7 @@ function BasicLayout(props: any) {
       {props.children}
       <BackTop />
     </Layout>
-  )
+  );
 }
 
 export default BasicLayout;

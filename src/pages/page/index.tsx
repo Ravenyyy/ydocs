@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.css';
-import { Layout , Breadcrumb } from 'antd';
+import { Layout, Breadcrumb } from 'antd';
 import { getDoc } from '@/services/getDocService';
 import AnchorTree from '@/components/AnchorTree';
 import SlideMenu from '@/components/SlideMenu';
@@ -14,7 +14,7 @@ export default function (props: any) {
     const getData = async () => {
       const reposData = await getDoc();
       setDoc(reposData);
-    }
+    };
     getData();
   }, []);
 
@@ -36,27 +36,34 @@ export default function (props: any) {
           create(cxt[i].children, children);
           el.push(
             <div key={cxt[i].title} id={cxt[i].title}>
-              {cxt[i].level == "1" ? (<h2>{cxt[i].title}</h2>) : (<h1>{cxt[i].title}</h1>)}
+              {cxt[i].level == '1' ? (
+                <h2>{cxt[i].title}</h2>
+              ) : (
+                <h1>{cxt[i].title}</h1>
+              )}
               <p> {cxt[i].description} </p>
-              {cxt[i].img ? (<img src={require('@/assets/yay.jpg')} />) : (<></>)}
+              {cxt[i].img ? <img src={require('@/assets/yay.jpg')} /> : <></>}
               {children}
-            </div>
-          )
+            </div>,
+          );
         } else {
           el.push(
             <div key={cxt[i].title} id={cxt[i].title}>
-              {cxt[i].level == "1" ? (<h2>{cxt[i].title}</h2>) : (<h1>{cxt[i].title}</h1>)}
+              {cxt[i].level == '1' ? (
+                <h2>{cxt[i].title}</h2>
+              ) : (
+                <h1>{cxt[i].title}</h1>
+              )}
               <p> {cxt[i].description} </p>
-              {cxt[i].img ? (<img src={require('@/assets/yay.jpg')} />) : (<></>)}
-            </div>
-          )
+              {cxt[i].img ? <img src={require('@/assets/yay.jpg')} /> : <></>}
+            </div>,
+          );
         }
       }
-
     };
     create(cxt.data, dom);
     return dom;
-  }
+  };
   return (
     <>
       <Layout>
@@ -65,19 +72,19 @@ export default function (props: any) {
         </Sider>
       </Layout>
       <Layout style={{ marginLeft: 200 }}>
-        <Content className={styles.myContent} >
+        <Content className={styles.myContent}>
           <div className={styles.myDetail}>
             <AnchorTree data={cxt}></AnchorTree>
             <Breadcrumb separator=" / " className={styles.myCrumb}>
               <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
               <Breadcrumb.Item href="">{title}</Breadcrumb.Item>
             </Breadcrumb>
-            <div>
-              {createDoc(cxt)}
-            </div>
+            <div>{createDoc(cxt)}</div>
           </div>
         </Content>
-        <Footer className={styles.myFooter}>test demo ©2021 Created by Raven</Footer>
+        <Footer className={styles.myFooter}>
+          test demo ©2021 Created by Raven
+        </Footer>
       </Layout>
     </>
   );
