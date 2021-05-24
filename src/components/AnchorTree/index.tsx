@@ -4,43 +4,30 @@ import styles from './style.module.css';
 
 const { Link } = Anchor;
 
-export default function (props: any) {
-  const treeData: any = props.data;
+interface AnchorData {
+  path?: string;
+  title?: string;
+  decription?: string;
+  icon?: string;
+  children?: Array<AnchorData>;
+}
 
+export default function (props: any) {
   const createAnchor = (treeData: any) => {
     if (!treeData) return;
-    let anchor: any = [];
-    const create = (treeData: any, el: any) => {
-      for (let i = 0; i < treeData.length; i++) {
-        if (treeData[i].children) {
-          let children: any = [];
-          create(treeData[i].children, children);
-          el.push(
-            <Link
-              key={i}
-              href={'#' + treeData[i].title}
-              title={treeData[i].title}
-            >
-              {children}
-            </Link>,
-          );
-        } else {
-          el.push(
-            <Link
-              key={i}
-              href={'#' + treeData[i].title}
-              title={treeData[i].title}
-            />,
-          );
-        }
-      }
-    };
-    create(treeData.data, anchor);
-    return anchor;
+    let index: number = 0;
+    return treeData.map((el: any) => {
+      return (
+        <Link key={index++} href={'#' + el.title} title={el.title}>
+          {createAnchor(el.children)}
+        </Link>
+      );
+    });
   };
+
   return (
-    <Anchor className={styles.myAnchor} targetOffset={70}>
-      {createAnchor(treeData)}
+    <Anchor className={styles['m-anchor']} targetOffset={70}>
+      {createAnchor(props.data)}
     </Anchor>
   );
 }

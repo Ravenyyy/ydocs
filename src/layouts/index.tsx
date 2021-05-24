@@ -10,9 +10,12 @@ const { Search } = Input;
 function BasicLayout(props: any) {
   return (
     <Layout>
-      <Header className={styles.myHeader}>
-        <div className={styles.myLogo}></div>
-        <Search placeholder="input search text" className={styles.mySearch} />
+      <Header className={styles['g-header']}>
+        <div className={styles['m-logo']}></div>
+        <Search
+          placeholder="input search text"
+          className={styles['m-search']}
+        />
         <DropdownMenu />
       </Header>
       {props.children}

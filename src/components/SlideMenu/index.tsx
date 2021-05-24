@@ -16,8 +16,8 @@ export default function (props: any) {
     getData();
   }, []);
 
-  let cates: any = cate ? cate.data : undefined,
-    title: any = cate ? cate.data : undefined;
+  const cates: string = cate?.data,
+    title: string = cate?.title;
 
   const createMenu = (cates: any) => {
     if (!cates) return;
@@ -51,13 +51,13 @@ export default function (props: any) {
 
   return (
     <>
-      <div className={styles.returnBtn}>
+      <div className={styles['s-returnbtn']}>
         <a href="/">
           {' '}
           <LeftOutlined /> back to home{' '}
         </a>
       </div>
-      <div className={styles.menuTitle}>{title}</div>
+      <div className={styles['s-menutitle']}>{title}</div>
       <Menu
         style={{ width: 200 }}
         defaultSelectedKeys={['/' + props.params.id]}

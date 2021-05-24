@@ -18,71 +18,44 @@ export default function (props: any) {
     getData();
   }, []);
 
-  let cxt: any = undefined,
-    title: any = undefined;
+  const docBody: any = doc?.data[props.match.params.id].data,
+    crubTitle: any = doc?.title;
 
-  if (doc) {
-    cxt = doc.data[props.match.params.id];
-    title = doc.title;
-  }
+  document.title = doc?.data[props.match.params.id].title;
 
-  const createDoc = (cxt: any) => {
-    if (!cxt) return;
-    let dom: any = [];
-    const create = (cxt: any, el: any) => {
-      for (let i = 0; i < cxt.length; i++) {
-        if (cxt[i].children) {
-          let children: any = [];
-          create(cxt[i].children, children);
-          el.push(
-            <div key={cxt[i].title} id={cxt[i].title}>
-              {cxt[i].level == '1' ? (
-                <h2>{cxt[i].title}</h2>
-              ) : (
-                <h1>{cxt[i].title}</h1>
-              )}
-              <p> {cxt[i].description} </p>
-              {cxt[i].img ? <img src={require('@/assets/yay.jpg')} /> : <></>}
-              {children}
-            </div>,
-          );
-        } else {
-          el.push(
-            <div key={cxt[i].title} id={cxt[i].title}>
-              {cxt[i].level == '1' ? (
-                <h2>{cxt[i].title}</h2>
-              ) : (
-                <h1>{cxt[i].title}</h1>
-              )}
-              <p> {cxt[i].description} </p>
-              {cxt[i].img ? <img src={require('@/assets/yay.jpg')} /> : <></>}
-            </div>,
-          );
-        }
-      }
-    };
-    create(cxt.data, dom);
-    return dom;
+  const createDoc = (docBody: any) => {
+    if (!docBody) return;
+    return docBody.map((el: any) => {
+      return (
+        <div key={el.title} id={el.title}>
+          {el.level == '1' ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
+          <p> {el.description} </p>
+          {el.img ? <img src={require('@/assets/yay.jpg')} /> : <></>}
+          {createDoc(el.children)}
+        </div>
+      );
+    });
   };
+
   return (
     <>
       <Layout>
-        <Sider className={styles.mySlide}>
+        <Sider className={styles['g-slide']}>
           <SlideMenu params={props.match.params}></SlideMenu>
         </Sider>
       </Layout>
       <Layout style={{ marginLeft: 200 }}>
-        <Content className={styles.myContent}>
-          <div className={styles.myDetail}>
-            <AnchorTree data={cxt}></AnchorTree>
-            <Breadcrumb separator=" / " className={styles.myCrumb}>
+        <Content className={styles['g-content']}>
+          <div className={styles['g-detail']}>
+            <AnchorTree data={docBody}></AnchorTree>
+            <Breadcrumb separator=" / " className={styles['m-crumb']}>
               <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-              <Breadcrumb.Item href="">{title}</Breadcrumb.Item>
+              <Breadcrumb.Item href="">{crubTitle}</Breadcrumb.Item>
             </Breadcrumb>
-            <div>{createDoc(cxt)}</div>
+            <div>{createDoc(docBody)}</div>
           </div>
         </Content>
-        <Footer className={styles.myFooter}>
+        <Footer className={styles['g-footer']}>
           test demo ©2021 Created by Raven
         </Footer>
       </Layout>

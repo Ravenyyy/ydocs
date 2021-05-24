@@ -32,14 +32,13 @@ export default function (props: any) {
       }
       return el;
     };
-    const menu = <Menu>{create(linklist)}</Menu>;
 
-    return menu;
+    return <Menu>{create(linklist)}</Menu>;
   };
 
   return (
     <>
-      <Dropdown overlay={createMenu(linklist)} className={styles.myLinkMenu}>
+      <Dropdown overlay={createMenu(linklist)} className={styles['m-linkmenu']}>
         <a onClick={(e) => e.preventDefault()}>
           Quick links <DownOutlined />
         </a>
