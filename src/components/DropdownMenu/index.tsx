@@ -4,8 +4,17 @@ import { getLink } from '@/services/getLinkService';
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-export default function (props: any) {
-  const [links, setLinks] = useState<any>();
+interface LinkNode {
+  path: string;
+  title: string;
+}
+
+interface LinkData {
+  data: LinkNode[];
+}
+
+export default function () {
+  const [links, setLinks] = useState<LinkData>();
 
   useEffect(() => {
     const getData = async () => {
@@ -15,31 +24,28 @@ export default function (props: any) {
     getData();
   }, []);
 
-  const linklist: any = links ? links.data : undefined;
+  const linklist: LinkNode[] | undefined = links?.data;
 
-  const createMenu = (linklist: any) => {
+  const createMenu = (linklist: LinkNode[] | undefined) => {
     if (!linklist) return;
-    const create: any = (linklist: any) => {
-      let el: any = [];
-      for (let i = 0; i < linklist.length; i++) {
-        el.push(
-          <Menu.Item key={linklist[i].path} title={linklist[i].title}>
-            <a href={linklist[i].path} key={linklist[i].path}>
-              <span>{linklist[i].title}</span>
-            </a>
-          </Menu.Item>,
-        );
-      }
-      return el;
-    };
-
-    return <Menu>{create(linklist)}</Menu>;
+    return linklist.map((el: LinkNode) => {
+      return (
+        <Menu.Item key={el.path} title={el.title}>
+          <a href={el.path} key={el.path}>
+            <span>{el.title}</span>
+          </a>
+        </Menu.Item>
+      );
+    });
   };
 
   return (
     <>
-      <Dropdown overlay={createMenu(linklist)} className={styles['m-linkmenu']}>
-        <a onClick={(e) => e.preventDefault()}>
+      <Dropdown
+        overlay={<Menu>{createMenu(linklist)}</Menu>}
+        className={styles['m-linkmenu']}
+      >
+        <a onClick={e => e.preventDefault()}>
           Quick links <DownOutlined />
         </a>
       </Dropdown>

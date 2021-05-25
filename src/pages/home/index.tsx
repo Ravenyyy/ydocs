@@ -7,8 +7,19 @@ import { Link } from 'umi';
 
 const { Footer, Content } = Layout;
 
-function BasicLayout(props: any) {
-  const [repo, setRepo] = useState<any>();
+interface RepoNode {
+  path: string;
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+interface RepoData {
+  data: RepoNode[];
+}
+
+function BasicLayout() {
+  const [repo, setRepo] = useState<RepoData>();
 
   useEffect(() => {
     const getData = async () => {
@@ -18,11 +29,11 @@ function BasicLayout(props: any) {
     getData();
   }, []);
 
-  const repoList: any = repo?.data;
+  const repoList: RepoNode[] | undefined = repo?.data;
 
-  const createRepo = (repoList: any) => {
+  const createRepo = (repoList: RepoNode[] | undefined) => {
     if (!repoList) return;
-    return repoList.map((repo: any) => {
+    return repoList.map((repo: RepoNode) => {
       return (
         <Col span={12} key={repo.path}>
           <Row>

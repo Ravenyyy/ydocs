@@ -5,8 +5,28 @@ import { LeftOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { Link } from 'umi';
 
-export default function (props: any) {
-  const [cate, setCates] = useState<any>();
+interface SlideMenuProps {
+  repo: string;
+  id: string;
+}
+
+interface SlideMenuContext {
+  path: string;
+  title: string;
+  decription?: string;
+  icon?: string;
+  children?: SlideMenuContext[];
+}
+
+interface SlideMenuData {
+  data: SlideMenuContext[];
+  title?: string;
+}
+
+const defaultOpenKeys: string[] = [];
+
+const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
+  const [cate, setCates] = useState<SlideMenuData>();
 
   useEffect(() => {
     const getData = async () => {
@@ -16,37 +36,31 @@ export default function (props: any) {
     getData();
   }, []);
 
-  const cates: string = cate?.data,
-    title: string = cate?.title;
+  const cates: SlideMenuContext[] | undefined = cate?.data,
+    title: string | undefined = cate?.title;
 
-  const createMenu = (cates: any) => {
+  let submenuIndex: number = 0;
+
+  const createMenu = (cates: SlideMenuContext[] | undefined) => {
     if (!cates) return;
-    let submenuIndex: number = 0;
-    let menu: any = [];
-    const create = (cates: any, el: any) => {
-      for (let i = 0; i < cates.length; i++) {
-        if (cates[i].children) {
-          let children: any = [];
-          create(cates[i].children, children);
-          submenuIndex++;
-          el.push(
-            <Menu.SubMenu key={`sub${submenuIndex}`} title={cates[i].title}>
-              {children}
-            </Menu.SubMenu>,
-          );
-        } else {
-          el.push(
-            <Menu.Item key={cates[i].path} title={cates[i].title}>
-              <Link to={'/' + props.params.repo + cates[i].path}>
-                <span>{cates[i].title}</span>
-              </Link>
-            </Menu.Item>,
-          );
-        }
+    return cates.map((el: SlideMenuContext) => {
+      if (el.children) {
+        defaultOpenKeys.push('sub' + submenuIndex);
+        return (
+          <Menu.SubMenu key={'sub' + submenuIndex} title={el.title}>
+            {createMenu(el.children)}
+          </Menu.SubMenu>
+        );
+      } else {
+        return (
+          <Menu.Item key={el.path} title={el.title}>
+            <Link to={'/' + repo + el.path}>
+              <span>{el.title}</span>
+            </Link>
+          </Menu.Item>
+        );
       }
-    };
-    create(cates, menu);
-    return menu;
+    });
   };
 
   return (
@@ -60,12 +74,14 @@ export default function (props: any) {
       <div className={styles['s-menutitle']}>{title}</div>
       <Menu
         style={{ width: 200 }}
-        defaultSelectedKeys={['/' + props.params.id]}
-        defaultOpenKeys={['sub1']}
+        defaultSelectedKeys={['/' + id]}
+        defaultOpenKeys={defaultOpenKeys}
         mode="inline"
       >
         {createMenu(cates)}
       </Menu>
     </>
   );
-}
+};
+
+export default SlideMenu;

@@ -5,18 +5,24 @@ import styles from './style.module.css';
 const { Link } = Anchor;
 
 interface AnchorData {
-  path?: string;
-  title?: string;
-  decription?: string;
-  icon?: string;
-  children?: Array<AnchorData>;
+  title: string;
+  level: number;
+  description?: string;
+  img?: string;
+  video?: string;
+  children?: AnchorData[];
 }
 
-export default function (props: any) {
-  const createAnchor = (treeData: any) => {
-    if (!treeData) return;
+interface AnchorProps {
+  data: AnchorData[];
+  description?: string;
+}
+
+const AnchorTree: React.FC<AnchorProps> = ({ data, description }) => {
+  const createAnchor = (data: AnchorData[] | undefined) => {
+    if (!data) return;
     let index: number = 0;
-    return treeData.map((el: any) => {
+    return data.map((el: AnchorData) => {
       return (
         <Link key={index++} href={'#' + el.title} title={el.title}>
           {createAnchor(el.children)}
@@ -27,7 +33,9 @@ export default function (props: any) {
 
   return (
     <Anchor className={styles['m-anchor']} targetOffset={70}>
-      {createAnchor(props.data)}
+      {createAnchor(data)}
     </Anchor>
   );
-}
+};
+
+export default AnchorTree;

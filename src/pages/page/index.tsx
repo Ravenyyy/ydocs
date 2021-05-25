@@ -7,6 +7,15 @@ import SlideMenu from '@/components/SlideMenu';
 
 const { Footer, Sider, Content } = Layout;
 
+interface DocData {
+  title: string;
+  level: number;
+  description?: string;
+  img?: string;
+  video?: string;
+  children?: DocData[];
+}
+
 export default function (props: any) {
   const [doc, setDoc] = useState<any>();
 
@@ -18,17 +27,18 @@ export default function (props: any) {
     getData();
   }, []);
 
-  const docBody: any = doc?.data[props.match.params.id].data,
-    crubTitle: any = doc?.title;
+  const routeParams = props.match.params,
+    docBody: DocData[] = doc?.data[routeParams.id].data,
+    crubTitle: string = doc?.title;
 
-  document.title = doc?.data[props.match.params.id].title;
+  document.title = doc?.data[routeParams.id].title;
 
-  const createDoc = (docBody: any) => {
+  const createDoc = (docBody: DocData[] | undefined) => {
     if (!docBody) return;
-    return docBody.map((el: any) => {
+    return docBody.map((el: DocData) => {
       return (
         <div key={el.title} id={el.title}>
-          {el.level == '1' ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
+          {el.level == 1 ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
           <p> {el.description} </p>
           {el.img ? <img src={require('@/assets/yay.jpg')} /> : <></>}
           {createDoc(el.children)}
@@ -41,7 +51,7 @@ export default function (props: any) {
     <>
       <Layout>
         <Sider className={styles['g-slide']}>
-          <SlideMenu params={props.match.params}></SlideMenu>
+          <SlideMenu id={routeParams.id} repo={routeParams.repo}></SlideMenu>
         </Sider>
       </Layout>
       <Layout style={{ marginLeft: 200 }}>
