@@ -18,7 +18,7 @@ interface RepoData {
   data: RepoNode[];
 }
 
-function BasicLayout() {
+const Home: React.FC = () => {
   const [repo, setRepo] = useState<RepoData>();
 
   useEffect(() => {
@@ -65,6 +65,6 @@ function BasicLayout() {
       </Layout>
     </>
   );
-}
+};
 
-export default BasicLayout;
+export default Home;

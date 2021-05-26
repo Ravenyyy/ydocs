@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styles from './index.css';
 import DropdownMenu from '@/components/DropdownMenu';
 import { Layout, Input, BackTop, Button } from 'antd';
@@ -7,7 +6,7 @@ const { Header } = Layout;
 
 const { Search } = Input;
 
-function BasicLayout(props: any) {
+const BasicLayout: React.FC<any> = props => {
   return (
     <Layout>
       <Header className={styles['g-header']}>
@@ -22,6 +21,6 @@ function BasicLayout(props: any) {
       <BackTop />
     </Layout>
   );
-}
+};
 
 export default BasicLayout;

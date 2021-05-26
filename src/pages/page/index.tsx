@@ -33,7 +33,9 @@ interface RouteParams {
   repo: string;
 }
 
-export default function (props: RouteComponentProps<RouteParams>) {
+type Props = RouteComponentProps<RouteParams>;
+
+const Page: React.FC<Props> = props => {
   const [doc, setDoc] = useState<DocProps>();
 
   useEffect(() => {
@@ -123,4 +125,6 @@ export default function (props: RouteComponentProps<RouteParams>) {
       </Layout>
     </>
   );
-}
+};
+
+export default Page;

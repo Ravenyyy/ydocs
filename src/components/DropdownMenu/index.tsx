@@ -13,7 +13,7 @@ interface LinkData {
   data: LinkNode[];
 }
 
-export default function () {
+const AnchorTree: React.FC = () => {
   const [links, setLinks] = useState<LinkData>();
 
   useEffect(() => {
@@ -51,4 +51,6 @@ export default function () {
       </Dropdown>
     </>
   );
-}
+};
+
+export default AnchorTree;
