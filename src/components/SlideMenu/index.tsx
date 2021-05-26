@@ -38,14 +38,12 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
 
   const cates: SlideMenuContext[] = cate?.data || [];
 
-  let submenuIndex: number = 0;
-
   const createMenu = (cates: SlideMenuContext[]) =>
-    cates.map((el: SlideMenuContext) => {
+    cates.map((el: SlideMenuContext, index: number) => {
       if (el.children) {
-        defaultOpenKeys.push('sub' + submenuIndex);
+        defaultOpenKeys.push('sub' + index);
         return (
-          <Menu.SubMenu key={'sub' + submenuIndex} title={el.title}>
+          <Menu.SubMenu key={'sub' + index} title={el.title}>
             {createMenu(el.children || [])}
           </Menu.SubMenu>
         );
