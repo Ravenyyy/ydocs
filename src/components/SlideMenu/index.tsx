@@ -67,8 +67,7 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
     <>
       <div className={styles['s-returnbtn']}>
         <a href="/">
-          {' '}
-          <LeftOutlined /> back to home{' '}
+          <LeftOutlined /> back to home
         </a>
       </div>
       <div className={styles['s-menutitle']}>{title}</div>

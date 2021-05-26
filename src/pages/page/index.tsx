@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.css';
 import { Layout, Breadcrumb, Image, Button } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
@@ -6,6 +6,7 @@ import { getDoc } from '@/services/getDocService';
 import AnchorTree from '@/components/AnchorTree';
 import SlideMenu from '@/components/SlideMenu';
 import { RouteComponentProps } from 'react-router';
+import { Helmet } from 'umi';
 
 const { Footer, Sider, Content } = Layout;
 
@@ -57,8 +58,6 @@ const Page: React.FC<Props> = props => {
     docBody: DocBody[] | undefined = doc?.data[id].data,
     crubTitle: string | undefined = doc?.title;
 
-  document.title = doc ? doc.data[id].title : 'myreact';
-
   const createDoc = (docBody: DocBody[] | undefined) => {
     if (!docBody) return;
     return docBody.map((el: DocBody) => {
@@ -84,12 +83,17 @@ const Page: React.FC<Props> = props => {
     return (
       <video controls width={'95%'}>
         <source src={url} type="video/mp4" />
+        Your browser doesn't support HTML5 video
       </video>
     );
   };
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{doc ? doc.data[id].title : 'myreact'}</title>
+      </Helmet>
       <Button
         type="primary"
         onClick={toggleClick}
