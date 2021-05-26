@@ -40,7 +40,7 @@ const AnchorTree: React.FC = () => {
   return (
     <Dropdown
       overlay={<Menu>{createMenu(linkList)}</Menu>}
-      className={styles['m-linkmenu']}
+      className={styles.mLinkmenu}
     >
       <a onClick={e => e.preventDefault()}>
         Quick links <DownOutlined />

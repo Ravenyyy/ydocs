@@ -23,4 +23,7 @@ export default defineConfig({
   antd: {},
   title: 'myreact',
   fastRefresh: {},
+  cssLoader: {
+    localsConvention: 'camelCase',
+  },
 });

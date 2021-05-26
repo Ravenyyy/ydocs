@@ -62,17 +62,17 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
 
   return (
     <>
-      <div className={styles['s-returnbtn']}>
+      <div className={styles.sReturnbtn}>
         <a href="/">
           <LeftOutlined /> back to home
         </a>
       </div>
-      <div className={styles['s-menutitle']}>{cate?.title || ''}</div>
+      <div className={styles.sMenutitle}>{cate?.title || ''}</div>
       <Menu
         defaultSelectedKeys={['/' + id]}
         defaultOpenKeys={defaultOpenKeys}
         mode="inline"
-        className={styles['s-menu']}
+        className={styles.sMenu}
       >
         {createMenu(cates)}
       </Menu>

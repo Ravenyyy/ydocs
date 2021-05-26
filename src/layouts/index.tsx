@@ -9,12 +9,9 @@ const { Search } = Input;
 const BasicLayout: React.FC<any> = props => {
   return (
     <Layout>
-      <Header className={styles['g-header']}>
-        <div className={styles['m-logo']}></div>
-        <Search
-          placeholder="input search text"
-          className={styles['m-search']}
-        />
+      <Header className={styles.gHeader}>
+        <div className={styles.mLogo}></div>
+        <Search placeholder="input search text" className={styles.mSearch} />
         <DropdownMenu />
       </Header>
       {props.children}

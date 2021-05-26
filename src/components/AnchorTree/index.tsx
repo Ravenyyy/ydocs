@@ -23,7 +23,7 @@ const AnchorTree: React.FC<AnchorProps> = ({ data, description }) => {
   };
 
   return (
-    <Anchor className={styles['m-anchor']} targetOffset={70}>
+    <Anchor className={styles.mAnchor} targetOffset={70}>
       {createAnchor(data || [])}
     </Anchor>
   );
