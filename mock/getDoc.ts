@@ -17,6 +17,8 @@ export default {
               {
                 title: '小标题2',
                 description: '这是正文22222222222',
+                video:
+                  'http://alipay-rmsdeploy-image.cn-hangzhou.alipay.aliyun-inc.com/antfincdn/%24Td7YC%264Gf/Jietu20210524-131721-HD.mp4',
               },
             ],
           },
@@ -58,6 +60,8 @@ export default {
                 level: 2,
                 description: '这是正文111111111',
                 img: 'http://alipay-rmsdeploy-image.cn-hangzhou.alipay.aliyun-inc.com/antfincdn/WQFY0FHHmm/yay.jpg',
+                video:
+                  'http://alipay-rmsdeploy-image.cn-hangzhou.alipay.aliyun-inc.com/antfincdn/%24Td7YC%264Gf/Jietu20210524-131721-HD.mp4',
               },
               {
                 title: '小标题2',

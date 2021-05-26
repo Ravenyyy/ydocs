@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './index.css';
 import { Layout, Breadcrumb, Image, Button } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
@@ -44,10 +44,7 @@ export default function (props: RouteComponentProps<RouteParams>) {
     getData();
   }, []);
 
-  const [btnState, setBtnState] = useState(
-    document.body.clientWidth > 990 ? false : true,
-  );
-  const menuState = document.body.clientWidth > 990 ? true : false;
+  const [btnState, setBtnState] = useState(false);
 
   const toggleClick = () => {
     setBtnState(!btnState);
@@ -68,6 +65,7 @@ export default function (props: RouteComponentProps<RouteParams>) {
           {el.level == 1 ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
           <p> {el.description} </p>
           {imageDemo(el.img)}
+          {videoDemo(el.video)}
           {createDoc(el.children)}
         </div>
       );
@@ -77,6 +75,15 @@ export default function (props: RouteComponentProps<RouteParams>) {
   const imageDemo = (url: string | undefined) => {
     if (!url) return;
     return <Image width={'95%'} src={url} />;
+  };
+
+  const videoDemo = (url: string | undefined) => {
+    if (!url) return;
+    return (
+      <video controls width={'95%'}>
+        <source src={url} type="video/mp4" />
+      </video>
+    );
   };
 
   return (
@@ -90,11 +97,11 @@ export default function (props: RouteComponentProps<RouteParams>) {
       </Button>
       <Layout
         className={styles['g-left']}
-        style={{ display: menuState || !btnState ? 'block' : 'none' }}
+        style={{ display: btnState ? 'block' : 'none' }}
       >
         <Sider
           className={styles['g-slide']}
-          style={{ display: menuState || !btnState ? 'block' : 'none' }}
+          style={{ display: btnState ? 'block' : 'none' }}
         >
           <SlideMenu id={id} repo={repo}></SlideMenu>
         </Sider>
