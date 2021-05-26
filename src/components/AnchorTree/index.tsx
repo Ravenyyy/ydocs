@@ -12,10 +12,9 @@ interface AnchorProps {
 
 const AnchorTree: React.FC<AnchorProps> = ({ data, description }) => {
   const createAnchor = (data: DocBody[]) => {
-    let index: number = 0;
-    return data.map((el: DocBody) => {
+    return data.map((el: DocBody, index: number) => {
       return (
-        <Link key={index++} href={'#' + el.title} title={el.title}>
+        <Link key={index} href={'#' + el.title} title={el.title}>
           {createAnchor(el.children || [])}
         </Link>
       );
