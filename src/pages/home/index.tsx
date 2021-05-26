@@ -35,19 +35,15 @@ function BasicLayout() {
     if (!repoList) return;
     return repoList.map((repo: RepoNode) => {
       return (
-        <Col span={12} key={repo.path}>
-          <Row>
-            <Col span={2}>
-              <SnippetsTwoTone className={styles['s-icon']} />
-            </Col>
-            <Col span={4}>
-              <Row>
-                <Link to={repo.path}>{repo.title}</Link>
-              </Row>
-              <Row>{repo.description}</Row>
-            </Col>
-          </Row>
-        </Col>
+        <div className={styles['g-repoitem']} key={repo.path}>
+          <div className={styles['s-left']}>
+            <SnippetsTwoTone className={styles['s-icon']} />
+          </div>
+          <div className={styles['s-right']}>
+            <Link to={repo.path}>{repo.title}</Link>
+            <div>{repo.description}</div>
+          </div>
+        </div>
       );
     });
   };
@@ -60,7 +56,7 @@ function BasicLayout() {
             <h1>首页</h1>
             <p>这是一个demo</p>
             <h2>文档仓库</h2>
-            <Row className={styles['s-repo']}>{createRepo(repoList)}</Row>
+            <div className={styles['s-repo']}>{createRepo(repoList)}</div>
           </div>
         </Content>
         <Footer className={styles['g-footer']}>

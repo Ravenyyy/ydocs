@@ -1,5 +1,11 @@
 .m-anchor {
   position: fixed;
   top: 80px;
-  right: 60px;
+  right: 100px;
+}
+
+@media only screen and (max-width: 990px){
+  .m-anchor {
+    display: none;
+  }
 }

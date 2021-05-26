@@ -7,7 +7,7 @@ import { Link } from 'umi';
 
 interface SlideMenuProps {
   repo: string;
-  id: string;
+  id: number;
 }
 
 interface SlideMenuContext {
@@ -73,10 +73,10 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
       </div>
       <div className={styles['s-menutitle']}>{title}</div>
       <Menu
-        style={{ width: 200 }}
         defaultSelectedKeys={['/' + id]}
         defaultOpenKeys={defaultOpenKeys}
         mode="inline"
+        className={styles['s-menu']}
       >
         {createMenu(cates)}
       </Menu>

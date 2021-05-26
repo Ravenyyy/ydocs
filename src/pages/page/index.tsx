@@ -1,23 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.css';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb, Image, Button } from 'antd';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { getDoc } from '@/services/getDocService';
 import AnchorTree from '@/components/AnchorTree';
 import SlideMenu from '@/components/SlideMenu';
+import { RouteComponentProps } from 'react-router';
 
 const { Footer, Sider, Content } = Layout;
 
-interface DocData {
+export interface DocBody {
   title: string;
   level: number;
   description?: string;
   img?: string;
   video?: string;
-  children?: DocData[];
+  children?: DocBody[];
 }
 
-export default function (props: any) {
-  const [doc, setDoc] = useState<any>();
+type DocData = {
+  data: DocBody[];
+  title: string;
+};
+
+interface DocProps {
+  data: DocData[];
+  title: string;
+}
+
+interface RouteParams {
+  id: string;
+  repo: string;
+}
+
+export default function (props: RouteComponentProps<RouteParams>) {
+  const [doc, setDoc] = useState<DocProps>();
 
   useEffect(() => {
     const getData = async () => {
@@ -27,34 +44,62 @@ export default function (props: any) {
     getData();
   }, []);
 
-  const routeParams = props.match.params,
-    docBody: DocData[] = doc?.data[routeParams.id].data,
-    crubTitle: string = doc?.title;
+  const [btnState, setBtnState] = useState(
+    document.body.clientWidth > 990 ? false : true,
+  );
+  const menuState = document.body.clientWidth > 990 ? true : false;
 
-  document.title = doc?.data[routeParams.id].title;
+  const toggleClick = () => {
+    setBtnState(!btnState);
+  };
 
-  const createDoc = (docBody: DocData[] | undefined) => {
+  const id: number = parseInt(props.match.params.id),
+    repo: string = props.match.params.repo,
+    docBody: DocBody[] | undefined = doc?.data[id].data,
+    crubTitle: string | undefined = doc?.title;
+
+  document.title = doc ? doc.data[id].title : 'myreact';
+
+  const createDoc = (docBody: DocBody[] | undefined) => {
     if (!docBody) return;
-    return docBody.map((el: DocData) => {
+    return docBody.map((el: DocBody) => {
       return (
         <div key={el.title} id={el.title}>
           {el.level == 1 ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
           <p> {el.description} </p>
-          {el.img ? <img src={require('@/assets/yay.jpg')} /> : <></>}
+          {imageDemo(el.img)}
           {createDoc(el.children)}
         </div>
       );
     });
   };
 
+  const imageDemo = (url: string | undefined) => {
+    if (!url) return;
+    return <Image width={'95%'} src={url} />;
+  };
+
   return (
     <>
-      <Layout>
-        <Sider className={styles['g-slide']}>
-          <SlideMenu id={routeParams.id} repo={routeParams.repo}></SlideMenu>
+      <Button
+        type="primary"
+        onClick={toggleClick}
+        className={styles['m-menubtn']}
+      >
+        {React.createElement(btnState ? MenuUnfoldOutlined : MenuFoldOutlined)}
+      </Button>
+      <Layout
+        className={styles['g-left']}
+        style={{ display: menuState || !btnState ? 'block' : 'none' }}
+      >
+        <Sider
+          className={styles['g-slide']}
+          style={{ display: menuState || !btnState ? 'block' : 'none' }}
+        >
+          <SlideMenu id={id} repo={repo}></SlideMenu>
         </Sider>
       </Layout>
-      <Layout style={{ marginLeft: 200 }}>
+      <Layout className={styles['g-right']}>
         <Content className={styles['g-content']}>
           <div className={styles['g-detail']}>
             <AnchorTree data={docBody}></AnchorTree>

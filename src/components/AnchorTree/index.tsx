@@ -1,28 +1,20 @@
 import React from 'react';
 import { Anchor } from 'antd';
 import styles from './style.module.css';
+import { DocBody } from '@/pages/page/index';
 
 const { Link } = Anchor;
 
-interface AnchorData {
-  title: string;
-  level: number;
-  description?: string;
-  img?: string;
-  video?: string;
-  children?: AnchorData[];
-}
-
 interface AnchorProps {
-  data: AnchorData[];
+  data: DocBody[] | undefined;
   description?: string;
 }
 
 const AnchorTree: React.FC<AnchorProps> = ({ data, description }) => {
-  const createAnchor = (data: AnchorData[] | undefined) => {
+  const createAnchor = (data: DocBody[] | undefined) => {
     if (!data) return;
     let index: number = 0;
-    return data.map((el: AnchorData) => {
+    return data.map((el: DocBody) => {
       return (
         <Link key={index++} href={'#' + el.title} title={el.title}>
           {createAnchor(el.children)}

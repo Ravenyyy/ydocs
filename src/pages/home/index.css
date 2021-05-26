@@ -79,3 +79,37 @@
   width: 200px;
   margin-left: 60px;
 }
+
+.s-left {
+  float: left;
+}
+
+.s-right {
+  float: left;
+  margin-left: 20px;
+}
+
+.g-repoitem {
+  width: 50%;
+  float: left;
+}
+
+@media only screen and (max-width: 990px){
+  .g-detail {
+    padding: 45px 15px;
+  }
+}
+
+@media only screen and (max-width: 700px){
+  .g-repoitem {
+    width: 100%;
+    float: right;
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (max-width: 160px){
+  .g-detail {
+    padding: 45px 5px;
+  }
+}

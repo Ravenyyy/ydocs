@@ -11,7 +11,7 @@
 }
 
 .g-header {
-  z-index: 2;
+  z-index: 4;
   position: fixed;
   width: 100vw;
   background: white;
@@ -38,7 +38,7 @@
 }
 
 .m-logo {
-  z-index: 3;
+  z-index: 5;
   float: left;
   width: 120px;
   height: 32px;
@@ -52,4 +52,16 @@
   margin: 16px 24px;
   width: 200px;
   margin-left: 60px;
+}
+
+@media only screen and (max-width: 700px) {
+  .m-search {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .m-logo {
+    display: none;
+  }
 }
