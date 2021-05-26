@@ -15,7 +15,7 @@
   position: fixed;
   width: 100vw;
   background: white;
-  text-align: center; 
+  text-align: center;
   padding: 0;
   opacity: 0.8;
   box-shadow: 10px 5px 5px #f0f2f5;
@@ -24,7 +24,7 @@
 .g-content {
   padding-top: 70px;
   background: white;
-  min-height: calc(100vh - 51px)
+  min-height: calc(100vh - 51px);
 }
 
 .g-detail {
@@ -44,7 +44,7 @@
   height: 32px;
   margin: 16px 24px;
   background: gray;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .m-search {

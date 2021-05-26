@@ -15,7 +15,7 @@
   position: fixed;
   width: 100vw;
   background: white;
-  text-align: center; 
+  text-align: center;
   padding: 0;
   opacity: 0.8;
   box-shadow: 10px 5px 5px #f0f2f5;
@@ -24,7 +24,7 @@
 .g-content {
   padding-top: 70px;
   background: white;
-  min-height: calc(100vh - 51px)
+  min-height: calc(100vh - 51px);
 }
 
 .g-detail {
@@ -32,27 +32,27 @@
   background: white;
 }
 
-.g-detail h1{
+.g-detail h1 {
   font-size: 30px;
 }
 
-.g-detail p{
+.g-detail p {
   font-size: 15px;
   font-weight: 600;
   line-height: 60px;
 }
 
-.g-detail h2{
+.g-detail h2 {
   font-size: 20px;
 }
 
-.s-repo{
+.s-repo {
   padding: 20px 0;
   font-size: 16px;
   line-height: 32px;
 }
 
-.s-icon{
+.s-icon {
   padding: 12px 0;
   font-size: 36px;
   margin: auto;
@@ -70,7 +70,7 @@
   height: 32px;
   margin: 16px 24px;
   background: gray;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .m-search {
@@ -94,13 +94,13 @@
   float: left;
 }
 
-@media only screen and (max-width: 990px){
+@media only screen and (max-width: 990px) {
   .g-detail {
     padding: 45px 15px;
   }
 }
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
   .g-repoitem {
     width: 100%;
     float: right;
@@ -108,7 +108,7 @@
   }
 }
 
-@media only screen and (max-width: 160px){
+@media only screen and (max-width: 160px) {
   .g-detail {
     padding: 45px 5px;
   }
