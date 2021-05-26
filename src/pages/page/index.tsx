@@ -93,7 +93,7 @@ export default function (props: RouteComponentProps<RouteParams>) {
         onClick={toggleClick}
         className={styles['m-menubtn']}
       >
-        {React.createElement(btnState ? MenuUnfoldOutlined : MenuFoldOutlined)}
+        {btnState ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       <Layout
         className={styles['g-left']}
