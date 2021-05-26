@@ -36,19 +36,17 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
     getData();
   }, []);
 
-  const cates: SlideMenuContext[] | undefined = cate?.data,
-    title: string | undefined = cate?.title;
+  const cates: SlideMenuContext[] = cate?.data || [];
 
   let submenuIndex: number = 0;
 
-  const createMenu = (cates: SlideMenuContext[] | undefined) => {
-    if (!cates) return;
-    return cates.map((el: SlideMenuContext) => {
+  const createMenu = (cates: SlideMenuContext[]) =>
+    cates.map((el: SlideMenuContext) => {
       if (el.children) {
         defaultOpenKeys.push('sub' + submenuIndex);
         return (
           <Menu.SubMenu key={'sub' + submenuIndex} title={el.title}>
-            {createMenu(el.children)}
+            {createMenu(el.children || [])}
           </Menu.SubMenu>
         );
       } else {
@@ -61,7 +59,6 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
         );
       }
     });
-  };
 
   return (
     <>
@@ -70,7 +67,7 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
           <LeftOutlined /> back to home
         </a>
       </div>
-      <div className={styles['s-menutitle']}>{title}</div>
+      <div className={styles['s-menutitle']}>{cate?.title || ''}</div>
       <Menu
         defaultSelectedKeys={['/' + id]}
         defaultOpenKeys={defaultOpenKeys}

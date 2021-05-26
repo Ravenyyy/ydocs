@@ -76,9 +76,6 @@
     display: block !important;
   }
 
-  .g-slide{
-    display: block !important;
-  }
 }
 @media only screen and (max-width: 990px){
   .m-menubtn {
@@ -96,7 +93,6 @@
   }
 
   .g-slide{
-    display: none;
     width: 100vw !important;
     max-width: 100% !important;
     min-width: 150px !important;

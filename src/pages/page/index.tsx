@@ -54,31 +54,27 @@ const Page: React.FC<Props> = props => {
   };
 
   const id: number = parseInt(props.match.params.id),
-    repo: string = props.match.params.repo,
-    docBody: DocBody[] | undefined = doc?.data[id].data,
-    crubTitle: string | undefined = doc?.title;
+    docBody: DocBody[] = doc?.data[id].data || [];
 
-  const createDoc = (docBody: DocBody[] | undefined) => {
-    if (!docBody) return;
-    return docBody.map((el: DocBody) => {
+  const createDoc = (docBody: DocBody[]) =>
+    docBody.map((el: DocBody) => {
       return (
         <div key={el.title} id={el.title}>
           {el.level == 1 ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
           <p> {el.description} </p>
-          {imageDemo(el.img)}
-          {videoDemo(el.video)}
-          {createDoc(el.children)}
+          {imageDemo(el.img || '')}
+          {videoDemo(el.video || '')}
+          {createDoc(el.children || [])}
         </div>
       );
     });
-  };
 
-  const imageDemo = (url: string | undefined) => {
+  const imageDemo = (url: string) => {
     if (!url) return;
     return <Image width={'95%'} src={url} />;
   };
 
-  const videoDemo = (url: string | undefined) => {
+  const videoDemo = (url: string) => {
     if (!url) return;
     return (
       <video controls width={'95%'}>
@@ -105,20 +101,17 @@ const Page: React.FC<Props> = props => {
         className={styles['g-left']}
         style={{ display: btnState ? 'block' : 'none' }}
       >
-        <Sider
-          className={styles['g-slide']}
-          style={{ display: btnState ? 'block' : 'none' }}
-        >
-          <SlideMenu id={id} repo={repo}></SlideMenu>
+        <Sider className={styles['g-slide']}>
+          <SlideMenu id={id} repo={props.match.params.repo}></SlideMenu>
         </Sider>
       </Layout>
       <Layout className={styles['g-right']}>
         <Content className={styles['g-content']}>
           <div className={styles['g-detail']}>
-            <AnchorTree data={docBody}></AnchorTree>
+            <AnchorTree data={docBody || []}></AnchorTree>
             <Breadcrumb separator=" / " className={styles['m-crumb']}>
               <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-              <Breadcrumb.Item href="">{crubTitle}</Breadcrumb.Item>
+              <Breadcrumb.Item href="">{doc?.title || ''}</Breadcrumb.Item>
             </Breadcrumb>
             <div>{createDoc(docBody)}</div>
           </div>

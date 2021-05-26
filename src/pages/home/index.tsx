@@ -29,11 +29,10 @@ const Home: React.FC = () => {
     getData();
   }, []);
 
-  const repoList: RepoNode[] | undefined = repo?.data;
+  const repoList: RepoNode[] = repo?.data || [];
 
-  const createRepo = (repoList: RepoNode[] | undefined) => {
-    if (!repoList) return;
-    return repoList.map((repo: RepoNode) => {
+  const createRepo = (repoList: RepoNode[]) =>
+    repoList.map((repo: RepoNode) => {
       return (
         <div className={styles['g-repoitem']} key={repo.path}>
           <div className={styles['s-left']}>
@@ -46,24 +45,21 @@ const Home: React.FC = () => {
         </div>
       );
     });
-  };
 
   return (
-    <>
-      <Layout>
-        <Content className={styles['g-content']}>
-          <div className={styles['g-detail']}>
-            <h1>首页</h1>
-            <p>这是一个demo</p>
-            <h2>文档仓库</h2>
-            <div className={styles['s-repo']}>{createRepo(repoList)}</div>
-          </div>
-        </Content>
-        <Footer className={styles['g-footer']}>
-          test demo ©2021 Created by Raven
-        </Footer>
-      </Layout>
-    </>
+    <Layout>
+      <Content className={styles['g-content']}>
+        <div className={styles['g-detail']}>
+          <h1>首页</h1>
+          <p>这是一个demo</p>
+          <h2>文档仓库</h2>
+          <div className={styles['s-repo']}>{createRepo(repoList)}</div>
+        </div>
+      </Content>
+      <Footer className={styles['g-footer']}>
+        test demo ©2021 Created by Raven
+      </Footer>
+    </Layout>
   );
 };
 

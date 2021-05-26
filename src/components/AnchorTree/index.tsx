@@ -6,18 +6,17 @@ import { DocBody } from '@/pages/page/index';
 const { Link } = Anchor;
 
 interface AnchorProps {
-  data: DocBody[] | undefined;
+  data: DocBody[];
   description?: string;
 }
 
 const AnchorTree: React.FC<AnchorProps> = ({ data, description }) => {
-  const createAnchor = (data: DocBody[] | undefined) => {
-    if (!data) return;
+  const createAnchor = (data: DocBody[]) => {
     let index: number = 0;
     return data.map((el: DocBody) => {
       return (
         <Link key={index++} href={'#' + el.title} title={el.title}>
-          {createAnchor(el.children)}
+          {createAnchor(el.children || [])}
         </Link>
       );
     });
@@ -25,7 +24,7 @@ const AnchorTree: React.FC<AnchorProps> = ({ data, description }) => {
 
   return (
     <Anchor className={styles['m-anchor']} targetOffset={70}>
-      {createAnchor(data)}
+      {createAnchor(data || [])}
     </Anchor>
   );
 };

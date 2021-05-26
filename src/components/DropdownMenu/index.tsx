@@ -24,11 +24,10 @@ const AnchorTree: React.FC = () => {
     getData();
   }, []);
 
-  const linklist: LinkNode[] | undefined = links?.data;
+  const linkList: LinkNode[] = links?.data || [];
 
-  const createMenu = (linklist: LinkNode[] | undefined) => {
-    if (!linklist) return;
-    return linklist.map((el: LinkNode) => {
+  const createMenu = (linklist: LinkNode[]) =>
+    linkList.map((el: LinkNode) => {
       return (
         <Menu.Item key={el.path} title={el.title}>
           <a href={el.path} key={el.path}>
@@ -37,19 +36,16 @@ const AnchorTree: React.FC = () => {
         </Menu.Item>
       );
     });
-  };
 
   return (
-    <>
-      <Dropdown
-        overlay={<Menu>{createMenu(linklist)}</Menu>}
-        className={styles['m-linkmenu']}
-      >
-        <a onClick={e => e.preventDefault()}>
-          Quick links <DownOutlined />
-        </a>
-      </Dropdown>
-    </>
+    <Dropdown
+      overlay={<Menu>{createMenu(linkList)}</Menu>}
+      className={styles['m-linkmenu']}
+    >
+      <a onClick={e => e.preventDefault()}>
+        Quick links <DownOutlined />
+      </a>
+    </Dropdown>
   );
 };
 
