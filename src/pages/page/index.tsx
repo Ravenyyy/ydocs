@@ -47,10 +47,10 @@ const Page: React.FC<Props> = props => {
     getData();
   }, []);
 
-  const [btnState, setBtnState] = useState(false);
+  const [isFold, setFold] = useState(false);
 
   const toggleClick = () => {
-    setBtnState(!btnState);
+    setFold(!isFold);
   };
 
   const id: number = parseInt(props.match.params.id),
@@ -90,33 +90,29 @@ const Page: React.FC<Props> = props => {
         <meta charSet="utf-8" />
         <title>{doc ? doc.data[id].title : 'myreact'}</title>
       </Helmet>
-      <Button
-        type="primary"
-        onClick={toggleClick}
-        className={styles['m-menubtn']}
-      >
-        {btnState ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+      <Button type="primary" onClick={toggleClick} className={styles.mMenubtn}>
+        {isFold ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       <Layout
-        className={styles['g-left']}
-        style={{ display: btnState ? 'block' : 'none' }}
+        className={styles.gLeft}
+        style={{ display: isFold ? 'block' : 'none' }}
       >
-        <Sider className={styles['g-slide']}>
+        <Sider className={styles.gSlide}>
           <SlideMenu id={id} repo={props.match.params.repo}></SlideMenu>
         </Sider>
       </Layout>
-      <Layout className={styles['g-right']}>
-        <Content className={styles['g-content']}>
-          <div className={styles['g-detail']}>
+      <Layout className={styles.gRight}>
+        <Content className={styles.gContent}>
+          <div className={styles.gDetail}>
             <AnchorTree data={docBody || []}></AnchorTree>
-            <Breadcrumb separator=" / " className={styles['m-crumb']}>
+            <Breadcrumb separator=" / " className={styles.mCrumb}>
               <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
               <Breadcrumb.Item href="">{doc?.title || ''}</Breadcrumb.Item>
             </Breadcrumb>
             <div>{createDoc(docBody)}</div>
           </div>
         </Content>
-        <Footer className={styles['g-footer']}>
+        <Footer className={styles.gFooter}>
           test demo ©2021 Created by Raven
         </Footer>
       </Layout>
