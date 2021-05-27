@@ -8,7 +8,7 @@ export default {
         icon: '1',
       },
       {
-        path: '/1',
+        path: '/@1',
         title: '文档2',
         decription: '这是文档2',
         icon: '2',

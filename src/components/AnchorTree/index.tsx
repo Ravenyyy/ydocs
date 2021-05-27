@@ -14,7 +14,7 @@ const AnchorTree: React.FC<AnchorProps> = ({ data, description }) => {
   const createAnchor = (data: DocBody[]) => {
     return data.map((el: DocBody, index: number) => {
       return (
-        <Link key={index} href={'#' + el.title} title={el.title}>
+        <Link key={el.title + index} href={'#' + el.title} title={el.title}>
           {createAnchor(el.children || [])}
         </Link>
       );

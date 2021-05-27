@@ -23,8 +23,6 @@ interface SlideMenuData {
   title?: string;
 }
 
-const defaultOpenKeys: string[] = [];
-
 const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
   const [cate, setCates] = useState<SlideMenuData>();
 
@@ -38,12 +36,27 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
 
   const cates: SlideMenuContext[] = cate?.data || [];
 
+  const [defaultOpenKeys, setDefaultOpenKeys] = useState<string[]>([]);
+
+  useEffect(() => {
+    setDefaultOpenKeys([]);
+    const mapChildren = (cates: SlideMenuContext[]) => {
+      cates.map(el => {
+        if (el.children) {
+          defaultOpenKeys.push(el.path);
+          mapChildren(el.children || []);
+        }
+      });
+    };
+    mapChildren(cates);
+    setDefaultOpenKeys(defaultOpenKeys);
+  }, [cates]);
+
   const createMenu = (cates: SlideMenuContext[]) =>
-    cates.map((el: SlideMenuContext, index: number) => {
+    cates.map(el => {
       if (el.children) {
-        defaultOpenKeys.push('sub' + index);
         return (
-          <Menu.SubMenu key={'sub' + index} title={el.title}>
+          <Menu.SubMenu key={el.path} title={el.title}>
             {createMenu(el.children || [])}
           </Menu.SubMenu>
         );
