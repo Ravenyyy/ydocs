@@ -27,11 +27,11 @@ const AnchorTree: React.FC = () => {
   const linkList: LinkNode[] = links?.data || [];
 
   const createMenu = (linkList: LinkNode[]) =>
-    linkList.map(el => {
+    linkList.map(link => {
       return (
-        <Menu.Item key={el.path} title={el.title}>
-          <a href={el.path} key={el.path}>
-            <span>{el.title}</span>
+        <Menu.Item key={link.path} title={link.title}>
+          <a href={link.path} key={link.path}>
+            <span>{link.title}</span>
           </a>
         </Menu.Item>
       );

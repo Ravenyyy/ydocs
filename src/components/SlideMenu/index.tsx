@@ -42,10 +42,10 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
   useEffect(() => {
     setDefaultOpenKeys([]);
     const mapChildren = (cates: SlideMenuContext[]) => {
-      cates.map(el => {
-        if (el.children) {
-          defaultOpenKeys.push(el.path);
-          mapChildren(el.children);
+      cates.map(cate => {
+        if (cate.children) {
+          defaultOpenKeys.push(cate.path);
+          mapChildren(cate.children);
         }
       });
     };

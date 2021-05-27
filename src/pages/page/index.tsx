@@ -54,17 +54,21 @@ const Page: React.FC<Props> = props => {
   };
 
   const id: number = parseInt(props.match.params.id),
-    docBody: DocBody[] = doc?.data[id].data || [];
+    docBodys: DocBody[] = doc?.data[id].data || [];
 
-  const createDoc = (docBody: DocBody[]) =>
-    docBody.map(el => {
+  const createDoc = (docBodys: DocBody[]) =>
+    docBodys.map(docBody => {
       return (
-        <div key={el.title} id={el.title}>
-          {el.level == 1 ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
-          <p> {el.description} </p>
-          {imageDemo(el.img)}
-          {videoDemo(el.video)}
-          {createDoc(el.children || [])}
+        <div key={docBody.title} id={docBody.title}>
+          {docBody.level == 1 ? (
+            <h2>{docBody.title}</h2>
+          ) : (
+            <h1>{docBody.title}</h1>
+          )}
+          <p> {docBody.description} </p>
+          {imageDemo(docBody.img)}
+          {videoDemo(docBody.video)}
+          {createDoc(docBody.children || [])}
         </div>
       );
     });
@@ -112,12 +116,12 @@ const Page: React.FC<Props> = props => {
       <Layout className={styles.gRight}>
         <Content className={styles.gContent}>
           <div className={styles.gDetail}>
-            <AnchorTree data={docBody || []}></AnchorTree>
+            <AnchorTree data={docBodys || []}></AnchorTree>
             <Breadcrumb separator=" / " className={styles.mCrumb}>
               <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
               <Breadcrumb.Item href="">{doc?.title || ''}</Breadcrumb.Item>
             </Breadcrumb>
-            <div>{createDoc(docBody)}</div>
+            <div>{createDoc(docBodys)}</div>
           </div>
         </Content>
         <Footer className={styles.gFooter}>
