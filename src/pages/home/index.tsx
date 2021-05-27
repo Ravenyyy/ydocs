@@ -19,7 +19,7 @@ interface RepoData {
 }
 
 const Home: React.FC = () => {
-  const [repo, setRepo] = useState<RepoData>();
+  const [repo, setRepo] = useState<RepoData | undefined>();
 
   useEffect(() => {
     const getData = async () => {

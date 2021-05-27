@@ -25,7 +25,7 @@ interface SlideMenuData {
 }
 
 const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
-  const [cate, setCates] = useState<SlideMenuData>();
+  const [cate, setCates] = useState<SlideMenuData | undefined>();
 
   useEffect(() => {
     const getData = async () => {

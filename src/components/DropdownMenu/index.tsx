@@ -14,7 +14,7 @@ interface LinkData {
 }
 
 const AnchorTree: React.FC = () => {
-  const [links, setLinks] = useState<LinkData>();
+  const [links, setLinks] = useState<LinkData | undefined>();
 
   useEffect(() => {
     const getData = async () => {
@@ -26,7 +26,7 @@ const AnchorTree: React.FC = () => {
 
   const linkList: LinkNode[] = links?.data || [];
 
-  const createMenu = (linklist: LinkNode[]) =>
+  const createMenu = (linkList: LinkNode[]) =>
     linkList.map((el: LinkNode) => {
       return (
         <Menu.Item key={el.path} title={el.title}>

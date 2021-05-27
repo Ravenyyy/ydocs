@@ -10,7 +10,7 @@ interface AnchorProps {
   description?: string;
 }
 
-const AnchorTree: React.FC<AnchorProps> = ({ data, description }) => {
+const AnchorTree: React.FC<AnchorProps> = ({ data }) => {
   const createAnchor = (data: DocBody[]) => {
     return data.map((el, index) => {
       return (

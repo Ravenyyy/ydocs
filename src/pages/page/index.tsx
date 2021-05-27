@@ -37,7 +37,7 @@ interface RouteParams {
 type Props = RouteComponentProps<RouteParams>;
 
 const Page: React.FC<Props> = props => {
-  const [doc, setDoc] = useState<DocProps>();
+  const [doc, setDoc] = useState<DocProps | undefined>();
 
   useEffect(() => {
     const getData = async () => {

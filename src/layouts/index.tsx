@@ -1,6 +1,6 @@
 import styles from './index.css';
 import DropdownMenu from '@/components/DropdownMenu';
-import { Layout, Input, BackTop, Button } from 'antd';
+import { Layout, Input, BackTop } from 'antd';
 
 const { Header } = Layout;
 
