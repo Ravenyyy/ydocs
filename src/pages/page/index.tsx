@@ -62,19 +62,19 @@ const Page: React.FC<Props> = props => {
         <div key={el.title} id={el.title}>
           {el.level == 1 ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
           <p> {el.description} </p>
-          {imageDemo(el.img || '')}
-          {videoDemo(el.video || '')}
+          {imageDemo(el.img)}
+          {videoDemo(el.video)}
           {createDoc(el.children || [])}
         </div>
       );
     });
 
-  const imageDemo = (url: string) => {
+  const imageDemo = (url: string | undefined) => {
     if (!url) return;
     return <Image width={'95%'} src={url} />;
   };
 
-  const videoDemo = (url: string) => {
+  const videoDemo = (url: string | undefined) => {
     if (!url) return;
     return (
       <video controls width={'95%'}>
