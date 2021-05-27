@@ -6,7 +6,11 @@ const { Header } = Layout;
 
 const { Search } = Input;
 
-const BasicLayout: React.FC<any> = props => {
+interface BasicLayoutProps {
+  children: React.ReactNode;
+}
+
+const BasicLayout: React.FC<BasicLayoutProps> = props => {
   return (
     <Layout>
       <Header className={styles.gHeader}>

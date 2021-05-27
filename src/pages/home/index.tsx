@@ -32,7 +32,7 @@ const Home: React.FC = () => {
   const repoList: RepoNode[] = repo?.data || [];
 
   const createRepo = (repoList: RepoNode[]) =>
-    repoList.map((repo: RepoNode) => {
+    repoList.map(repo => {
       return (
         <div className={styles.gRepoitem} key={repo.path}>
           <div className={styles.sLeft}>

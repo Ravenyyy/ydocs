@@ -45,7 +45,7 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
       cates.map(el => {
         if (el.children) {
           defaultOpenKeys.push(el.path);
-          mapChildren(el.children || []);
+          mapChildren(el.children);
         }
       });
     };

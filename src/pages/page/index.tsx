@@ -57,7 +57,7 @@ const Page: React.FC<Props> = props => {
     docBody: DocBody[] = doc?.data[id].data || [];
 
   const createDoc = (docBody: DocBody[]) =>
-    docBody.map((el: DocBody) => {
+    docBody.map(el => {
       return (
         <div key={el.title} id={el.title}>
           {el.level == 1 ? <h2>{el.title}</h2> : <h1>{el.title}</h1>}
