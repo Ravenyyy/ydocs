@@ -14,7 +14,6 @@ export default defineConfig({
         {
           path: './:repo',
           component: '../pages/page/index',
-          redirect: './:repo/0',
         },
         { path: './:repo/:id', component: '../pages/page/index' },
       ],

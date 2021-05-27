@@ -4,8 +4,8 @@ export default {
     msg: 'success!',
     data: {
       data: [
-        { path: 'http://www.baidu.com', title: 'baidu' },
-        { path: 'http://www.google.com', title: 'google' },
+        { path: 'url1', title: 'link1' },
+        { path: 'url2', title: 'link2' },
       ],
     },
   },

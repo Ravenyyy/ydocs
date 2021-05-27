@@ -12,6 +12,7 @@ interface RepoNode {
   title: string;
   description: string;
   icon?: string;
+  front: string;
 }
 
 export interface RepoData {
@@ -39,7 +40,7 @@ const Home: React.FC = () => {
             <SnippetsTwoTone className={styles.sIcon} />
           </div>
           <div className={styles.sRight}>
-            <Link to={repo.path}>{repo.title}</Link>
+            <Link to={repo.path + repo.front}>{repo.title}</Link>
             <div>{repo.description}</div>
           </div>
         </div>

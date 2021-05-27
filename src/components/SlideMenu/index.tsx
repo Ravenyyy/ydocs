@@ -22,14 +22,14 @@ interface SlideMenuContext {
 export interface SlideMenuData {
   data: SlideMenuContext[];
   title?: string;
+  front: string;
 }
 
 const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
   const [cate, setCates] = useState<SlideMenuData | undefined>();
-
   useEffect(() => {
     const getData = async () => {
-      const catesData = await getCate();
+      const catesData = await getCate({ repo: repo });
       setCates(catesData.data);
     };
     getData();

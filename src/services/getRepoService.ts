@@ -1,7 +1,7 @@
 import { RepoData } from '@/pages/home/index';
 
 interface GetCateParams {
-  params: string[];
+  [param: string]: string | number;
 }
 
 export interface GetCateResult {
@@ -10,7 +10,9 @@ export interface GetCateResult {
   data: RepoData;
 }
 
-export const getRepo = async (data?: GetCateParams): Promise<GetCateResult> => {
+export const getRepo = async (
+  params?: GetCateParams,
+): Promise<GetCateResult> => {
   const response = await fetch('/api/getRepo');
   return await response.json();
 };

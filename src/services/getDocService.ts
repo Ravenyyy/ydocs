@@ -1,7 +1,7 @@
 import { DocData } from '@/pages/page/index';
 
 interface GetDocParams {
-  params: string[];
+  [param: string]: string | number;
 }
 
 export interface GetDocResult {
@@ -10,7 +10,9 @@ export interface GetDocResult {
   data: DocData;
 }
 
-export const getDoc = async (data?: GetDocParams): Promise<GetDocResult> => {
-  const response = await fetch('/api/getDoc');
+export const getDoc = async (params?: GetDocParams): Promise<GetDocResult> => {
+  const response = await fetch(
+    '/api/getDoc' + (params?.id?.toString() ? '?id=' + params.id : ''),
+  );
   return await response.json();
 };

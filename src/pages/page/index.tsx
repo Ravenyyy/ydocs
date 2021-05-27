@@ -3,6 +3,7 @@ import styles from './index.css';
 import { Layout, Breadcrumb, Image, Button } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { getDoc } from '@/services/getDocService';
+import { getCate } from '@/services/getCateService';
 import AnchorTree from '@/components/AnchorTree';
 import SlideMenu from '@/components/SlideMenu';
 import { RouteComponentProps } from 'react-router';
@@ -19,13 +20,8 @@ export interface DocBody {
   children?: DocBody[];
 }
 
-type DocProps = {
-  data: DocBody[];
-  title: string;
-};
-
 export interface DocData {
-  data: DocProps[];
+  data: DocBody[];
   title: string;
 }
 
@@ -39,13 +35,15 @@ type Props = RouteComponentProps<RouteParams>;
 const Page: React.FC<Props> = props => {
   const [doc, setDoc] = useState<DocData | undefined>();
 
+  let id: number = parseInt(props.match.params.id);
+
   useEffect(() => {
     const getData = async () => {
-      const reposData = await getDoc();
+      const reposData = await getDoc({ id: id });
       setDoc(reposData.data);
     };
     getData();
-  }, []);
+  }, [props]);
 
   const [isFold, setIsFold] = useState(true);
 
@@ -53,8 +51,7 @@ const Page: React.FC<Props> = props => {
     setIsFold(!isFold);
   };
 
-  const id: number = parseInt(props.match.params.id),
-    docBodys: DocBody[] = doc?.data[id].data || [];
+  const docBodys: DocBody[] = doc?.data || [];
 
   const createDoc = (docBodys: DocBody[]) =>
     docBodys.map(docBody => {
@@ -96,7 +93,7 @@ const Page: React.FC<Props> = props => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{doc ? doc.data[id].title : 'myreact'}</title>
+        <title>{doc ? doc.title : 'myreact'}</title>
       </Helmet>
       <Button type="primary" onClick={toggleClick} className={styles.mMenubtn}>
         {isFold ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

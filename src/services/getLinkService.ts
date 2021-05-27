@@ -1,7 +1,7 @@
 import { LinkData } from '@/components/DropdownMenu';
 
 interface GetLinkParams {
-  params: string[];
+  [param: string]: string | number;
 }
 
 export interface GetLinkResult {
@@ -10,7 +10,9 @@ export interface GetLinkResult {
   data: LinkData;
 }
 
-export const getLink = async (data?: GetLinkParams): Promise<GetLinkResult> => {
+export const getLink = async (
+  params?: GetLinkParams,
+): Promise<GetLinkResult> => {
   const response = await fetch('/api/getLink');
   return await response.json();
 };
