@@ -47,7 +47,7 @@ const Page: React.FC<Props> = props => {
     getData();
   }, []);
 
-  const [isFold, setFold] = useState(false);
+  const [isFold, setFold] = useState(true);
 
   const toggleClick = () => {
     setFold(!isFold);
@@ -84,6 +84,10 @@ const Page: React.FC<Props> = props => {
     );
   };
 
+  const foldSlide = () => {
+    setFold(true);
+  };
+
   return (
     <>
       <Helmet>
@@ -95,10 +99,14 @@ const Page: React.FC<Props> = props => {
       </Button>
       <Layout
         className={styles.gLeft}
-        style={{ display: isFold ? 'block' : 'none' }}
+        style={{ display: isFold ? 'none' : 'block' }}
       >
         <Sider className={styles.gSlide}>
-          <SlideMenu id={id} repo={props.match.params.repo}></SlideMenu>
+          <SlideMenu
+            id={id}
+            repo={props.match.params.repo}
+            onClick={foldSlide}
+          ></SlideMenu>
         </Sider>
       </Layout>
       <Layout className={styles.gRight}>

@@ -8,6 +8,7 @@ import { Link } from 'umi';
 interface SlideMenuProps {
   repo: string;
   id: number;
+  onClick: () => void;
 }
 
 interface SlideMenuContext {
@@ -23,7 +24,7 @@ interface SlideMenuData {
   title?: string;
 }
 
-const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
+const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
   const [cate, setCates] = useState<SlideMenuData>();
 
   useEffect(() => {
@@ -57,12 +58,12 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id }) => {
       if (el.children) {
         return (
           <Menu.SubMenu key={el.path} title={el.title}>
-            {createMenu(el.children || [])}
+            {createMenu(el.children)}
           </Menu.SubMenu>
         );
       } else {
         return (
-          <Menu.Item key={el.path} title={el.title}>
+          <Menu.Item key={el.path} title={el.title} onClick={onClick}>
             <Link to={'/' + repo + el.path}>
               <span>{el.title}</span>
             </Link>
