@@ -19,13 +19,13 @@ export interface DocBody {
   children?: DocBody[];
 }
 
-type DocData = {
+type DocProps = {
   data: DocBody[];
   title: string;
 };
 
-interface DocProps {
-  data: DocData[];
+export interface DocData {
+  data: DocProps[];
   title: string;
 }
 
@@ -37,20 +37,20 @@ interface RouteParams {
 type Props = RouteComponentProps<RouteParams>;
 
 const Page: React.FC<Props> = props => {
-  const [doc, setDoc] = useState<DocProps | undefined>();
+  const [doc, setDoc] = useState<DocData | undefined>();
 
   useEffect(() => {
     const getData = async () => {
       const reposData = await getDoc();
-      setDoc(reposData);
+      setDoc(reposData.data);
     };
     getData();
   }, []);
 
-  const [isFold, setFold] = useState(true);
+  const [isFold, setIsFold] = useState(true);
 
   const toggleClick = () => {
-    setFold(!isFold);
+    setIsFold(!isFold);
   };
 
   const id: number = parseInt(props.match.params.id),
@@ -71,7 +71,7 @@ const Page: React.FC<Props> = props => {
 
   const imageDemo = (url: string | undefined) => {
     if (!url) return;
-    return <Image width={'95%'} src={url} />;
+    return <Image width={'95%'} src={url} fallback={'@/assets/error.jpg'} />;
   };
 
   const videoDemo = (url: string | undefined) => {
@@ -85,7 +85,7 @@ const Page: React.FC<Props> = props => {
   };
 
   const foldSlide = () => {
-    setFold(true);
+    setIsFold(true);
   };
 
   return (

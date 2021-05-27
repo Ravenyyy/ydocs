@@ -19,7 +19,7 @@ interface SlideMenuContext {
   children?: SlideMenuContext[];
 }
 
-interface SlideMenuData {
+export interface SlideMenuData {
   data: SlideMenuContext[];
   title?: string;
 }
@@ -30,7 +30,7 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
   useEffect(() => {
     const getData = async () => {
       const catesData = await getCate();
-      setCates(catesData);
+      setCates(catesData.data);
     };
     getData();
   }, []);

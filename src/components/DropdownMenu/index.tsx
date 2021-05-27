@@ -9,7 +9,7 @@ interface LinkNode {
   title: string;
 }
 
-interface LinkData {
+export interface LinkData {
   data: LinkNode[];
 }
 
@@ -19,7 +19,7 @@ const AnchorTree: React.FC = () => {
   useEffect(() => {
     const getData = async () => {
       const reposData = await getLink();
-      setLinks(reposData);
+      setLinks(reposData.data);
     };
     getData();
   }, []);
@@ -27,7 +27,7 @@ const AnchorTree: React.FC = () => {
   const linkList: LinkNode[] = links?.data || [];
 
   const createMenu = (linkList: LinkNode[]) =>
-    linkList.map((el: LinkNode) => {
+    linkList.map(el => {
       return (
         <Menu.Item key={el.path} title={el.title}>
           <a href={el.path} key={el.path}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.css';
-import { Layout, Row, Col } from 'antd';
+import { Layout } from 'antd';
 import { SnippetsTwoTone } from '@ant-design/icons';
 import { getRepo } from '@/services/getRepoService';
 import { Link } from 'umi';
@@ -14,7 +14,7 @@ interface RepoNode {
   icon?: string;
 }
 
-interface RepoData {
+export interface RepoData {
   data: RepoNode[];
 }
 
@@ -24,7 +24,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const getData = async () => {
       const reposData = await getRepo();
-      setRepo(reposData);
+      setRepo(reposData.data);
     };
     getData();
   }, []);
