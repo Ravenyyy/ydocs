@@ -1,7 +1,7 @@
 export default {
   'GET /api/getDoc': (req: any, res: any) => {
     const { query } = req;
-    if (!(query?.repo && query?.id)) {
+    if (!query?.repo) {
       res.send({
         code: '400',
         msg: 'Bad Request',

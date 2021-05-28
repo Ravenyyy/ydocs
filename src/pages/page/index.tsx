@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.css';
-import { Layout, Breadcrumb, Image, Button } from 'antd';
+import { Layout, Breadcrumb, Image, Button, message } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { getDoc } from '@/services/getDocService';
+import { getCate } from '@/services/getCateService';
 import AnchorTree from '@/components/AnchorTree';
-import SlideMenu from '@/components/SlideMenu';
+import SlideMenu, { SlideMenuData } from '@/components/SlideMenu';
 import { RouteComponentProps } from 'react-router';
 import { Helmet } from 'umi';
 import { useFetch } from '@/models/fetchData';
@@ -34,7 +35,7 @@ interface RouteParams {
 type Props = RouteComponentProps<RouteParams>;
 
 const Page: React.FC<Props> = props => {
-  const id: string = props.match.params.id;
+  const id = props.match.params.id;
   const repo: string = props.match.params.repo;
 
   const res: DocData | undefined = useFetch(
