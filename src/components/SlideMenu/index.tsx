@@ -4,10 +4,11 @@ import { getCate } from '@/services/getCateService';
 import { LeftOutlined } from '@ant-design/icons';
 import { Menu, message } from 'antd';
 import { Link } from 'umi';
+import { useFetch } from '@/models/response';
 
 interface SlideMenuProps {
   repo: string;
-  id: number;
+  id: string;
   onClick: () => void;
 }
 
@@ -26,20 +27,16 @@ export interface SlideMenuData {
 }
 
 const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
-  const [cate, setCates] = useState<SlideMenuData | undefined>();
-  useEffect(() => {
-    const getData = async () => {
-      const resData = await getCate({ repo: repo });
-      if (resData.code === '200') {
-        setCates(resData.data);
-      } else {
-        message.error('slidemenu 加载失败！');
-      }
-    };
-    getData();
-  }, []);
+  const res: SlideMenuData | undefined = useFetch(
+    getCate,
+    () => {
+      message.error('slidemenu 加载失败！');
+    },
+    { repo: repo },
+  );
 
-  const cates: SlideMenuContext[] = cate?.data || [];
+  const cates: SlideMenuContext[] = res?.data || [];
+  const title: string = res?.title || '';
 
   const [defaultOpenKeys, setDefaultOpenKeys] = useState<string[]>([]);
 
@@ -83,7 +80,7 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
           <LeftOutlined /> back to home
         </a>
       </div>
-      <div className={styles.sMenutitle}>{cate?.title || ''}</div>
+      <div className={styles.sMenutitle}>{title}</div>
       <Menu
         defaultSelectedKeys={['/' + id]}
         defaultOpenKeys={defaultOpenKeys}

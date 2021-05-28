@@ -39,6 +39,7 @@ export default {
                     },
                   ],
                   title: '文档1',
+                  repo: '仓库1',
                 },
               });
               break;
@@ -67,6 +68,7 @@ export default {
                     },
                   ],
                   title: '文档2.1',
+                  repo: '仓库1',
                 },
               });
               break;
@@ -100,6 +102,7 @@ export default {
                     },
                   ],
                   title: '文档2.2',
+                  repo: '仓库1',
                 },
               });
               break;
@@ -138,6 +141,7 @@ export default {
                     },
                   ],
                   title: '文档3',
+                  repo: '仓库2',
                 },
               });
               break;
@@ -168,6 +172,7 @@ export default {
                     },
                   ],
                   title: '文档4.1',
+                  repo: '仓库2',
                 },
               });
               break;
@@ -201,6 +206,7 @@ export default {
                     },
                   ],
                   title: '文档4.2',
+                  repo: '仓库2',
                 },
               });
               break;

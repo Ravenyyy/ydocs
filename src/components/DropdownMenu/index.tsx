@@ -3,6 +3,7 @@ import styles from './style.module.css';
 import { getLink } from '@/services/getLinkService';
 import { Menu, Dropdown, message } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { useFetch } from '@/models/response';
 
 interface LinkNode {
   path: string;
@@ -14,21 +15,11 @@ export interface LinkData {
 }
 
 const AnchorTree: React.FC = () => {
-  const [links, setLinks] = useState<LinkData | undefined>();
+  const res: LinkData | undefined = useFetch(getLink, () => {
+    message.error('quick link 加载失败！');
+  });
 
-  useEffect(() => {
-    const getData = async () => {
-      const resData = await getLink();
-      if (resData.code === '200') {
-        setLinks(resData.data);
-      } else {
-        message.error('slidemenu 加载失败！');
-      }
-    };
-    getData();
-  }, []);
-
-  const linkList: LinkNode[] = links?.data || [];
+  const linkList: LinkNode[] = res?.data || [];
 
   const createMenu = (linkList: LinkNode[]) =>
     linkList.map(link => {

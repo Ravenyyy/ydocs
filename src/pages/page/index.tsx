@@ -3,11 +3,11 @@ import styles from './index.css';
 import { Layout, Breadcrumb, Image, Button } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { getDoc } from '@/services/getDocService';
-import { getCate } from '@/services/getCateService';
 import AnchorTree from '@/components/AnchorTree';
 import SlideMenu from '@/components/SlideMenu';
 import { RouteComponentProps } from 'react-router';
 import { Helmet } from 'umi';
+import { useFetch } from '@/models/response';
 
 const { Footer, Sider, Content } = Layout;
 
@@ -23,6 +23,7 @@ export interface DocBody {
 export interface DocData {
   data: DocBody[];
   title: string;
+  repo: string;
 }
 
 interface RouteParams {
@@ -33,20 +34,17 @@ interface RouteParams {
 type Props = RouteComponentProps<RouteParams>;
 
 const Page: React.FC<Props> = props => {
-  const [doc, setDoc] = useState<DocData | undefined>();
+  const id: string = props.match.params.id;
+  const repo: string = props.match.params.repo;
 
-  let id: number = parseInt(props.match.params.id);
-  useEffect(() => {
-    const getData = async () => {
-      const resData = await getDoc({ id: id, repo: props.match.params.repo });
-      if (resData.code === '200') {
-        setDoc(resData.data);
-      } else {
-        location.replace('../pages/404/404');
-      }
-    };
-    getData();
-  }, [props]);
+  const res: DocData | undefined = useFetch(
+    getDoc,
+    () => {
+      location.replace('../pages/404/404');
+    },
+    { id: id, repo: repo },
+    id,
+  );
 
   const [isFold, setIsFold] = useState(true);
 
@@ -54,7 +52,9 @@ const Page: React.FC<Props> = props => {
     setIsFold(!isFold);
   };
 
-  const docBodys: DocBody[] = doc?.data || [];
+  const docBodys: DocBody[] = res?.data || [];
+  const title: string = res ? res.title : 'myreact';
+  const repoName: string = res ? res.repo : '未知仓库';
 
   const createDoc = (docBodys: DocBody[]) =>
     docBodys.map(docBody => {
@@ -96,7 +96,7 @@ const Page: React.FC<Props> = props => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{doc ? doc.title : 'myreact'}</title>
+        <title>{title}</title>
       </Helmet>
       <Button type="primary" onClick={toggleClick} className={styles.mMenubtn}>
         {isFold ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -106,11 +106,7 @@ const Page: React.FC<Props> = props => {
         style={{ display: isFold ? 'none' : 'block' }}
       >
         <Sider className={styles.gSlide}>
-          <SlideMenu
-            id={id}
-            repo={props.match.params.repo}
-            onClick={foldSlide}
-          ></SlideMenu>
+          <SlideMenu id={id} repo={repo} onClick={foldSlide}></SlideMenu>
         </Sider>
       </Layout>
       <Layout className={styles.gRight}>
@@ -119,7 +115,7 @@ const Page: React.FC<Props> = props => {
             <AnchorTree data={docBodys || []}></AnchorTree>
             <Breadcrumb separator=" / " className={styles.mCrumb}>
               <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-              <Breadcrumb.Item href="">{doc?.title || ''}</Breadcrumb.Item>
+              <Breadcrumb.Item href="">{repoName}</Breadcrumb.Item>
             </Breadcrumb>
             <div>{createDoc(docBodys)}</div>
           </div>

@@ -4,6 +4,7 @@ import { Layout } from 'antd';
 import { SnippetsTwoTone } from '@ant-design/icons';
 import { getRepo } from '@/services/getRepoService';
 import { Link } from 'umi';
+import { useFetch } from '@/models/response';
 
 const { Footer, Content } = Layout;
 
@@ -19,22 +20,12 @@ export interface RepoData {
   data: RepoNode[];
 }
 
-const Home: React.FC = props => {
-  const [repo, setRepo] = useState<RepoData | undefined>();
+const Home: React.FC = () => {
+  const res: RepoData | undefined = useFetch(getRepo, () => {
+    location.replace('../pages/404/404');
+  });
 
-  useEffect(() => {
-    const getData = async () => {
-      const resData = await getRepo();
-      if (resData.code === '200') {
-        setRepo(resData.data);
-      } else {
-        location.replace('../pages/404/404');
-      }
-    };
-    getData();
-  }, []);
-
-  const repoList: RepoNode[] = repo?.data || [];
+  const repoList: RepoNode[] = res?.data || [];
 
   const createRepo = (repoList: RepoNode[]) =>
     repoList.map(repo => {
