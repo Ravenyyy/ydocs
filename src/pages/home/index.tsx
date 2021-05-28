@@ -19,13 +19,17 @@ export interface RepoData {
   data: RepoNode[];
 }
 
-const Home: React.FC = () => {
+const Home: React.FC = props => {
   const [repo, setRepo] = useState<RepoData | undefined>();
 
   useEffect(() => {
     const getData = async () => {
-      const reposData = await getRepo();
-      setRepo(reposData.data);
+      const resData = await getRepo();
+      if (resData.code === '200') {
+        setRepo(resData.data);
+      } else {
+        location.replace('../pages/404/404');
+      }
     };
     getData();
   }, []);

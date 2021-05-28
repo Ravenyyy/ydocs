@@ -39,8 +39,12 @@ const Page: React.FC<Props> = props => {
 
   useEffect(() => {
     const getData = async () => {
-      const reposData = await getDoc({ id: id });
-      setDoc(reposData.data);
+      const resData = await getDoc({ id: id });
+      if (resData.code === '200') {
+        setDoc(resData.data);
+      } else {
+        location.replace('../pages/404/404');
+      }
     };
     getData();
   }, [props]);

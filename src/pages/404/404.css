@@ -1,0 +1,25 @@
+.g-content {
+  padding-top: 70px;
+  background: white;
+  min-height: calc(100vh - 51px);
+}
+
+.g-detail {
+  padding: 60px 50px;
+  display: block;
+  text-align: center;
+  background: white;
+}
+
+.g-footer {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.s-errorphoto {
+  width: 450px;
+}
+
+.s-returnbtn {
+  text-align: center;
+}

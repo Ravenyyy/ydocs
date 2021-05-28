@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './style.module.css';
 import { getCate } from '@/services/getCateService';
 import { LeftOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Menu, message } from 'antd';
 import { Link } from 'umi';
 
 interface SlideMenuProps {
@@ -29,8 +29,12 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
   const [cate, setCates] = useState<SlideMenuData | undefined>();
   useEffect(() => {
     const getData = async () => {
-      const catesData = await getCate({ repo: repo });
-      setCates(catesData.data);
+      const resData = await getCate({ repo: repo });
+      if (resData.code === '200') {
+        setCates(resData.data);
+      } else {
+        message.error('slidemenu 加载失败！');
+      }
     };
     getData();
   }, []);
