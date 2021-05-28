@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 import { SnippetsTwoTone } from '@ant-design/icons';
 import { getRepo } from '@/services/getRepoService';
 import { Link } from 'umi';
-import { useFetch } from '@/models/response';
+import { useFetch } from '@/models/fetchData';
 
 const { Footer, Content } = Layout;
 

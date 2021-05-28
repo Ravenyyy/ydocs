@@ -4,7 +4,7 @@ import { getCate } from '@/services/getCateService';
 import { LeftOutlined } from '@ant-design/icons';
 import { Menu, message } from 'antd';
 import { Link } from 'umi';
-import { useFetch } from '@/models/response';
+import { useFetch } from '@/models/fetchData';
 
 interface SlideMenuProps {
   repo: string;

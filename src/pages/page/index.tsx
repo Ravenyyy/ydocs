@@ -7,7 +7,7 @@ import AnchorTree from '@/components/AnchorTree';
 import SlideMenu from '@/components/SlideMenu';
 import { RouteComponentProps } from 'react-router';
 import { Helmet } from 'umi';
-import { useFetch } from '@/models/response';
+import { useFetch } from '@/models/fetchData';
 
 const { Footer, Sider, Content } = Layout;
 

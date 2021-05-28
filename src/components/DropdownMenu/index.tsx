@@ -3,7 +3,7 @@ import styles from './style.module.css';
 import { getLink } from '@/services/getLinkService';
 import { Menu, Dropdown, message } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { useFetch } from '@/models/response';
+import { useFetch } from '@/models/fetchData';
 
 interface LinkNode {
   path: string;
