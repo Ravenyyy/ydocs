@@ -12,7 +12,9 @@ export interface GetDocResult {
 
 export const getDoc = async (params?: GetDocParams): Promise<GetDocResult> => {
   const response = await fetch(
-    '/api/getDoc' + (params?.id?.toString() ? '?id=' + params.id : ''),
+    '/api/getDoc' +
+      (params?.repo?.toString() ? '?repo=' + params.repo : '') +
+      (params?.id?.toString() ? '&id=' + params.id : ''),
   );
   return await response.json();
 };

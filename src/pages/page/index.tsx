@@ -36,10 +36,9 @@ const Page: React.FC<Props> = props => {
   const [doc, setDoc] = useState<DocData | undefined>();
 
   let id: number = parseInt(props.match.params.id);
-
   useEffect(() => {
     const getData = async () => {
-      const resData = await getDoc({ id: id });
+      const resData = await getDoc({ id: id, repo: props.match.params.repo });
       if (resData.code === '200') {
         setDoc(resData.data);
       } else {
