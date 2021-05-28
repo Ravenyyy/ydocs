@@ -1,7 +1,8 @@
 import { DocData } from '@/pages/page/index';
 
 interface GetDocParams {
-  [param: string]: string | number;
+  id: string;
+  repo: string;
 }
 
 export interface GetDocResult {
@@ -10,11 +11,11 @@ export interface GetDocResult {
   data: DocData;
 }
 
-export const getDoc = async (params?: GetDocParams): Promise<GetDocResult> => {
-  const response = await fetch(
-    '/api/getDoc' +
-      (params?.repo?.toString() ? '?repo=' + params.repo : '') +
-      (params?.id?.toString() ? '&id=' + params.id : ''),
-  );
+export const getDoc = async (params: GetDocParams): Promise<GetDocResult> => {
+  const url = new URL('/api/getDoc', 'http://localhost:8001');
+  url.searchParams.set('id', params.id);
+  url.searchParams.set('repo', params.repo);
+
+  const response = await fetch(url.toString());
   return await response.json();
 };

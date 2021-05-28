@@ -1,7 +1,7 @@
 import { SlideMenuData } from '@/components/SlideMenu';
 
 interface GetCateParams {
-  [param: string]: string | number;
+  repo: string;
 }
 
 export interface GetCateResult {
@@ -11,10 +11,10 @@ export interface GetCateResult {
 }
 
 export const getCate = async (
-  params?: GetCateParams,
+  params: GetCateParams,
 ): Promise<GetCateResult> => {
-  const response = await fetch(
-    '/api/getCate' + (params?.repo?.toString() ? '?repo=' + params.repo : ''),
-  );
+  const url = new URL('/api/getCate', 'http://localhost:8001');
+  url.searchParams.set('repo', params.repo);
+  const response = await fetch(url.toString());
   return await response.json();
 };
