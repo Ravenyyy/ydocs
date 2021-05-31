@@ -1,7 +1,7 @@
 {
   "extends": "eslint-config-umi",
   "rules": {
-    "semi": 1, 
+    "semi": 1,
     "no-console": 0,
     "comma-dangle": [2,"always-multiline"],
     "max-len": 0,
@@ -27,5 +27,13 @@
         "ignoreRestSiblings": true
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]],
+        "extensions": [".ts", ".js", ".jsx", ".json", ".tsx"]
+      }
+    }
   }
 }

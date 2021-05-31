@@ -9,11 +9,7 @@ const { Header } = Layout;
 
 const { Search } = Input;
 
-interface BasicLayoutProps {
-  children: React.ReactNode;
-}
-
-const BasicLayout: React.FC<BasicLayoutProps> = props => {
+const BasicLayout: React.FC = props => {
   const [lang, setLang] = useState(getLocale());
   const switchLang = (e: any) => {
     setLang(e.target.value);

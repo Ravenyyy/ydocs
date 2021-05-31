@@ -25,9 +25,13 @@
     "umi": "^3.4.22"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-test-renderer": "^17.0.1",
     "@umijs/test": "^3.4.22",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.23.4",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.0",
     "react": "17.x",

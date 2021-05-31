@@ -55,14 +55,14 @@
   margin-left: 60px;
 }
 
-.m-Langswitch{
+.m-Langswitch {
   float: right;
   margin: 5px 0px;
   margin-right: 20px;
 }
 
 @media only screen and (max-width: 990px) {
-  .m-Langswitch{
+  .m-Langswitch {
     margin-right: 70px;
   }
 }
@@ -73,8 +73,8 @@
   }
 }
 
-@media only screen  and (max-width: 400px){
-  .m-Langswitch{
+@media only screen and (max-width: 400px) {
+  .m-Langswitch {
     display: none;
   }
 }
