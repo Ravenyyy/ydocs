@@ -1,0 +1,115 @@
+.g-slide {
+  position: fixed;
+  padding-top: 64px;
+  background-color: whitesmoke;
+  height: 100vh;
+  font-size: 16px;
+  background: white;
+  color: white;
+  overflow: auto;
+  border-right: 1px solid #f0f2f5;
+}
+
+.g-header {
+  z-index: 2;
+  position: fixed;
+  width: 100vw;
+  background: white;
+  text-align: center;
+  padding: 0;
+  opacity: 0.8;
+  box-shadow: 10px 5px 5px #f0f2f5;
+}
+
+.g-content {
+  padding-top: 70px;
+  background: white;
+  min-height: calc(100vh - 51px);
+}
+
+.g-detail {
+  padding: 45px 50px;
+  background: white;
+}
+
+.g-detail h1 {
+  font-size: 30px;
+}
+
+.g-detail p {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 60px;
+}
+
+.g-detail h2 {
+  font-size: 20px;
+}
+
+.s-repo {
+  padding: 20px 0;
+  font-size: 16px;
+  line-height: 32px;
+}
+
+.s-icon {
+  padding: 12px 0;
+  font-size: 36px;
+  margin: auto;
+}
+
+.g-footer {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.m-logo {
+  z-index: 3;
+  float: left;
+  width: 120px;
+  height: 32px;
+  margin: 16px 24px;
+  background: gray;
+  opacity: 0.5;
+}
+
+.m-search {
+  float: left;
+  margin: 16px 24px;
+  width: 200px;
+  margin-left: 60px;
+}
+
+.s-left {
+  float: left;
+}
+
+.s-right {
+  float: left;
+  margin-left: 20px;
+}
+
+.g-repoitem {
+  width: 50%;
+  float: left;
+}
+
+@media only screen and (max-width: 990px) {
+  .g-detail {
+    padding: 45px 15px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .g-repoitem {
+    width: 100%;
+    float: right;
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (max-width: 160px) {
+  .g-detail {
+    padding: 45px 5px;
+  }
+}

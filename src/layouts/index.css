@@ -1,0 +1,68 @@
+.g-slide {
+  position: fixed;
+  padding-top: 64px;
+  background-color: whitesmoke;
+  height: 100vh;
+  font-size: 16px;
+  background: white;
+  color: white;
+  overflow: auto;
+  border-right: 1px solid #f0f2f5;
+}
+
+.g-header {
+  z-index: 4;
+  position: fixed;
+  width: 100vw;
+  background: white;
+  text-align: center;
+  padding: 0;
+  opacity: 0.9;
+  box-shadow: 10px 5px 5px #f0f2f5;
+  backdrop-filter: blur(5px);
+}
+
+.g-content {
+  padding-top: 70px;
+  background: white;
+  min-height: calc(100vh - 51px);
+}
+
+.g-detail {
+  padding: 14px 30px;
+  background: white;
+}
+
+.g-footer {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.m-logo {
+  z-index: 5;
+  float: left;
+  width: 120px;
+  height: 32px;
+  margin: 16px 24px;
+  background: gray;
+  opacity: 0.5;
+}
+
+.m-search {
+  float: left;
+  margin: 16px 24px;
+  width: 200px;
+  margin-left: 60px;
+}
+
+@media only screen and (max-width: 700px) {
+  .m-search {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .m-logo {
+    display: none;
+  }
+}
