@@ -5,6 +5,7 @@ import { LeftOutlined } from '@ant-design/icons';
 import { Menu, message } from 'antd';
 import { Link } from 'umi';
 import { useFetch } from '@/models/fetchData';
+import { useIntl } from 'umi';
 
 interface SlideMenuProps {
   repo: string;
@@ -72,12 +73,13 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ repo, id, onClick }) => {
         );
       }
     });
+  const intl = useIntl();
 
   return (
     <>
       <div className={styles.sReturnbtn}>
         <a href="/">
-          <LeftOutlined /> back to home
+          <LeftOutlined /> {intl.formatMessage({ id: 'BACK_TO_HOME' })}
         </a>
       </div>
       <div className={styles.sMenutitle}>{title}</div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './404.css';
 import { Layout, Button } from 'antd';
+import { useIntl } from 'umi';
 
 const { Footer, Content } = Layout;
 
@@ -8,6 +9,8 @@ const ErrorPage: React.FC = () => {
   const goBack = () => {
     history.back();
   };
+
+  const intl = useIntl();
 
   return (
     <Layout>
@@ -21,7 +24,7 @@ const ErrorPage: React.FC = () => {
             />
           </div>
           <Button type="primary" onClick={goBack} className={styles.sReturnbtn}>
-            go back
+            {intl.formatMessage({ id: 'GO_BACK' })}
           </Button>
         </div>
       </Content>

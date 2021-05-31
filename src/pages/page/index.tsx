@@ -9,6 +9,7 @@ import SlideMenu, { SlideMenuData } from '@/components/SlideMenu';
 import { RouteComponentProps } from 'react-router';
 import { Helmet } from 'umi';
 import { useFetch } from '@/models/fetchData';
+import { useIntl } from 'umi';
 
 const { Footer, Sider, Content } = Layout;
 
@@ -93,6 +94,8 @@ const Page: React.FC<Props> = props => {
     setIsFold(true);
   };
 
+  const intl = useIntl();
+
   return (
     <>
       <Helmet>
@@ -115,7 +118,9 @@ const Page: React.FC<Props> = props => {
           <div className={styles.gDetail}>
             <AnchorTree data={docBodys || []}></AnchorTree>
             <Breadcrumb separator=" / " className={styles.mCrumb}>
-              <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+              <Breadcrumb.Item href="/">
+                {intl.formatMessage({ id: 'HOME_TITTLE' })}
+              </Breadcrumb.Item>
               <Breadcrumb.Item href="">{repoName}</Breadcrumb.Item>
             </Breadcrumb>
             <div>{createDoc(docBodys)}</div>

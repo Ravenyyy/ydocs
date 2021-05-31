@@ -5,6 +5,7 @@ import { SnippetsTwoTone } from '@ant-design/icons';
 import { getRepo } from '@/services/getRepoService';
 import { Link } from 'umi';
 import { useFetch } from '@/models/fetchData';
+import { useIntl } from 'umi';
 
 const { Footer, Content } = Layout;
 
@@ -42,13 +43,15 @@ const Home: React.FC = () => {
       );
     });
 
+  const intl = useIntl();
+
   return (
     <Layout>
       <Content className={styles.gContent}>
         <div className={styles.gDetail}>
-          <h1>首页</h1>
+          <h1>{intl.formatMessage({ id: 'HOME_TITTLE' })}</h1>
           <p>这是一个demo</p>
-          <h2>文档仓库</h2>
+          <h2>{intl.formatMessage({ id: 'REPO_TITTLE' })}</h2>
           <div className={styles.sRepo}>{createRepo(repoList)}</div>
         </div>
       </Content>

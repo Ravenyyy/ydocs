@@ -4,6 +4,7 @@ import { getLink } from '@/services/getLinkService';
 import { Menu, Dropdown, message } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { useFetch } from '@/models/fetchData';
+import { useIntl } from 'umi';
 
 interface LinkNode {
   path: string;
@@ -32,13 +33,15 @@ const AnchorTree: React.FC = () => {
       );
     });
 
+  const intl = useIntl();
+
   return (
     <Dropdown
       overlay={<Menu>{createMenu(linkList)}</Menu>}
       className={styles.mLinkmenu}
     >
       <a onClick={e => e.preventDefault()}>
-        Quick links <DownOutlined />
+        {intl.formatMessage({ id: 'QUICK_LINKS' })} <DownOutlined />
       </a>
     </Dropdown>
   );
