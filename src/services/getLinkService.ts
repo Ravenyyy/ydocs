@@ -1,9 +1,5 @@
 import { LinkData } from '@/components/DropdownMenu';
 
-// interface GetLinkParams {
-//   [param: string]: string | number;
-// }
-
 export interface GetLinkResult {
   code: string;
   msg: string;

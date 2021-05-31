@@ -1,9 +1,5 @@
 import { RepoData } from '@/pages/home/index';
 
-// interface GetCateParams {
-//   [param: string]: string | number;
-// }
-
 export interface GetCateResult {
   code: string;
   msg: string;
