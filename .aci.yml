@@ -1,0 +1,19 @@
+client:
+  aciTags: DOCKER
+  agent:
+    docker:
+      image: reg.docker.alibaba-inc.com/dockerlab/node-ci:3.7.11
+  script:
+    - |
+      export PATH=$PWD/node_modules/.bin:/root/.cli:$PATH
+      sed -i 's/sql_mode=/# sql_mode=/' /etc/my.cnf
+      time tnpm i --install-node=10 --no-cache --internal-oss-cache
+      node -e "console.log('%j, %j', process.versions, process.execPath)"
+      time tnpm run test:coverage
+  coverage: '(?<=Statements\s{1,10}:\s{1,10})\d{1,10}.\d{1,10}'
+  passrate: '(?<=PASS_RATE: )\d{1,10}.\d{1,10}'
+  publisher:
+    archiveArtifacts: 'coverage/'
+    html:
+      index: coverage/lcov-report/index.html
+      displayName: 测试覆盖率报告
