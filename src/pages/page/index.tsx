@@ -33,7 +33,7 @@ interface RouteParams {
   repo: string;
 }
 
-type Props = RouteComponentProps<RouteParams>;
+export type Props = RouteComponentProps<RouteParams>;
 
 const Page: React.FC<Props> = props => {
   const id = props.match.params.id;
