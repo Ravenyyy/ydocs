@@ -4,7 +4,7 @@ import { getDoc } from '@/services/getDocService';
 import { getLink } from '@/services/getLinkService';
 import { getRepo } from '@/services/getRepoService';
 
-describe.skip(' test service ', () => {
+describe(' test service ', () => {
   it('fetch correctly', () => {
     getCate({ repo: 'repo1' }).then(data => {
       expect(data.code).toBe('200');

@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import { IntlProvider } from 'umi';
 import zhCN from '../../locales/zh-CN';
 
-describe.skip('Page: index', () => {
+describe('Page: index', () => {
   it('Render correctly', () => {
     const wrapper = renderer.create(
       <IntlProvider locale="zh-CN" messages={zhCN}>
