@@ -8,7 +8,7 @@ import renderer, {
 import { IntlProvider, setIntl } from '@@/plugin-locale/localeExports';
 import zhCN from '../../locales/zh-CN';
 
-describe.only('Page: index', () => {
+describe('Page: index', () => {
   it('Render correctly', () => {
     const wrapper: ReactTestRenderer = renderer.create(
       <IntlProvider locale="zh-CN" messages={zhCN}>

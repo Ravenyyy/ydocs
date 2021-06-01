@@ -5,6 +5,8 @@ import renderer, {
   ReactTestInstance,
   ReactTestRenderer,
 } from 'react-test-renderer';
+import zhCN from '../../locales/zh-CN';
+
 import {
   IntlProvider,
   setIntl,
@@ -14,7 +16,7 @@ import {
 describe.skip('Layout: BasicLayout', () => {
   it('Render correctly', () => {
     const wrapper: ReactTestRenderer = renderer.create(
-      <IntlProvider locale={'zh-CN'}>
+      <IntlProvider locale={'zh-CN'} messages={zhCN} defaultLocale={'zh-CN'}>
         <BasicLayout />
       </IntlProvider>,
     );
