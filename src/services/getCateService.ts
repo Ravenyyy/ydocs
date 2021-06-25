@@ -13,7 +13,7 @@ export interface GetCateResult {
 export const getCate = async (
   params: GetCateParams,
 ): Promise<GetCateResult> => {
-  const url = new URL('/api/getCate', 'http://localhost:8001');
+  const url = new URL('/api/getCate', location.href);
   url.searchParams.set('repo', params.repo);
   const response = await fetch(url.toString());
   return await response.json();

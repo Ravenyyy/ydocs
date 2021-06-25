@@ -12,7 +12,7 @@ export interface GetDocResult {
 }
 
 export const getDoc = async (params: GetDocParams): Promise<GetDocResult> => {
-  const url = new URL('/api/getDoc', 'http://localhost:8001');
+  const url = new URL('/api/getDoc', location.href);
   url.searchParams.set('id', params.id);
   url.searchParams.set('repo', params.repo);
 
